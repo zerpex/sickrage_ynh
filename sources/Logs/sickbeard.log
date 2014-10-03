@@ -1,0 +1,867 @@
+2014-10-03 11:18:07 INFO     MAIN :: Checking database structure...
+2014-10-03 11:18:07 DEBUG    MAIN :: Checking Initial Schema database upgrade
+2014-10-03 11:18:07 DEBUG    MAIN :: sickbeard.db: SELECT 1 FROM sqlite_master WHERE name = ?; with args ('tv_shows',)
+2014-10-03 11:18:07 INFO     MAIN :: Database upgrade required: Initial Schema
+2014-10-03 11:18:07 DEBUG    MAIN :: sickbeard.db: SELECT 1 FROM sqlite_master WHERE name = ?; with args ('tv_shows',)
+2014-10-03 11:18:07 DEBUG    MAIN :: sickbeard.db: SELECT 1 FROM sqlite_master WHERE name = ?; with args ('db_version',)
+2014-10-03 11:18:07 DEBUG    MAIN :: sickbeard.db: CREATE TABLE db_version (db_version INTEGER);
+2014-10-03 11:18:07 DEBUG    MAIN :: sickbeard.db: CREATE TABLE history (action NUMERIC, date NUMERIC, showid NUMERIC, season NUMERIC, episode NUMERIC, quality NUMERIC, resource TEXT, provider TEXT, source TEXT);
+2014-10-03 11:18:07 DEBUG    MAIN :: sickbeard.db: CREATE TABLE info (last_backlog NUMERIC, last_tvdb NUMERIC);
+2014-10-03 11:18:07 DEBUG    MAIN :: sickbeard.db: CREATE TABLE tv_episodes (episode_id INTEGER PRIMARY KEY, showid NUMERIC, tvdbid NUMERIC, name TEXT, season NUMERIC, episode NUMERIC, description TEXT, airdate NUMERIC, hasnfo NUMERIC, hastbn NUMERIC, status NUMERIC, location TEXT, file_size NUMERIC, release_name TEXT);
+2014-10-03 11:18:07 DEBUG    MAIN :: sickbeard.db: CREATE TABLE tv_shows (show_id INTEGER PRIMARY KEY, location TEXT, show_name TEXT, tvdb_id NUMERIC, network TEXT, genre TEXT, runtime NUMERIC, quality NUMERIC, airs TEXT, status TEXT, flatten_folders NUMERIC, paused NUMERIC, startyear NUMERIC, tvr_id NUMERIC, tvr_name TEXT, air_by_date NUMERIC, lang TEXT, last_update_tvdb NUMERIC, rls_require_words TEXT, rls_ignore_words TEXT, skip_notices NUMERIC);
+2014-10-03 11:18:07 DEBUG    MAIN :: sickbeard.db: CREATE INDEX idx_tv_episodes_showid_airdate ON tv_episodes (showid,airdate);
+2014-10-03 11:18:07 DEBUG    MAIN :: sickbeard.db: CREATE INDEX idx_showid ON tv_episodes (showid);
+2014-10-03 11:18:07 DEBUG    MAIN :: sickbeard.db: CREATE UNIQUE INDEX idx_tvdb_id ON tv_shows (tvdb_id);
+2014-10-03 11:18:07 DEBUG    MAIN :: sickbeard.db: INSERT INTO db_version (db_version) VALUES (18);
+2014-10-03 11:18:07 DEBUG    MAIN :: Initial Schema upgrade completed
+2014-10-03 11:18:07 DEBUG    MAIN :: Checking Add Size And Scene Name Fields database upgrade
+2014-10-03 11:18:07 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 11:18:07 DEBUG    MAIN :: Add Size And Scene Name Fields upgrade not required
+2014-10-03 11:18:07 DEBUG    MAIN :: Checking Rename Season Folders database upgrade
+2014-10-03 11:18:07 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 11:18:07 DEBUG    MAIN :: Rename Season Folders upgrade not required
+2014-10-03 11:18:07 DEBUG    MAIN :: Checking Add1080p And Raw Qualities database upgrade
+2014-10-03 11:18:07 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 11:18:07 DEBUG    MAIN :: Add1080p And Raw Qualities upgrade not required
+2014-10-03 11:18:07 DEBUG    MAIN :: Checking Add Showid Tvdbid Index database upgrade
+2014-10-03 11:18:07 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 11:18:07 DEBUG    MAIN :: Add Showid Tvdbid Index upgrade not required
+2014-10-03 11:18:07 DEBUG    MAIN :: Checking Add Last Update database upgrade
+2014-10-03 11:18:07 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 11:18:07 DEBUG    MAIN :: Add Last Update upgrade not required
+2014-10-03 11:18:07 DEBUG    MAIN :: Checking Add Require And Ignore Words database upgrade
+2014-10-03 11:18:07 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 11:18:07 DEBUG    MAIN :: Add Require And Ignore Words upgrade not required
+2014-10-03 11:18:07 DEBUG    MAIN :: Checking Cleanup History And Specials database upgrade
+2014-10-03 11:18:07 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 11:18:07 DEBUG    MAIN :: Cleanup History And Specials upgrade not required
+2014-10-03 11:18:07 DEBUG    MAIN :: Checking Add Skip Notifications database upgrade
+2014-10-03 11:18:07 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 11:18:07 DEBUG    MAIN :: Add Skip Notifications upgrade not required
+2014-10-03 11:18:07 DEBUG    MAIN :: Checking Add History Source database upgrade
+2014-10-03 11:18:07 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 11:18:07 DEBUG    MAIN :: Add History Source upgrade not required
+2014-10-03 11:18:07 INFO     MAIN :: Checking database structure...
+2014-10-03 11:18:07 DEBUG    MAIN :: Checking Initial Schema database upgrade
+2014-10-03 11:18:07 DEBUG    MAIN :: cache.db: SELECT 1 FROM sqlite_master WHERE name = ?; with args ('lastUpdate',)
+2014-10-03 11:18:07 INFO     MAIN :: Database upgrade required: Initial Schema
+2014-10-03 11:18:07 DEBUG    MAIN :: cache.db: CREATE TABLE lastUpdate (provider TEXT, time NUMERIC);
+2014-10-03 11:18:07 DEBUG    MAIN :: cache.db: CREATE TABLE db_version (db_version INTEGER);
+2014-10-03 11:18:07 DEBUG    MAIN :: cache.db: INSERT INTO db_version (db_version) VALUES (?) with args (1,)
+2014-10-03 11:18:07 DEBUG    MAIN :: Initial Schema upgrade completed
+2014-10-03 11:18:07 DEBUG    MAIN :: Checking Add Scene Exceptions database upgrade
+2014-10-03 11:18:07 DEBUG    MAIN :: cache.db: SELECT 1 FROM sqlite_master WHERE name = ?; with args ('scene_exceptions',)
+2014-10-03 11:18:07 INFO     MAIN :: Database upgrade required: Add Scene Exceptions
+2014-10-03 11:18:07 DEBUG    MAIN :: cache.db: CREATE TABLE scene_exceptions (exception_id INTEGER PRIMARY KEY, tvdb_id INTEGER KEY, show_name TEXT, provider TEXT)
+2014-10-03 11:18:07 DEBUG    MAIN :: Add Scene Exceptions upgrade completed
+2014-10-03 11:18:07 DEBUG    MAIN :: Checking Add Scene Name Cache database upgrade
+2014-10-03 11:18:07 DEBUG    MAIN :: cache.db: SELECT 1 FROM sqlite_master WHERE name = ?; with args ('scene_names',)
+2014-10-03 11:18:07 INFO     MAIN :: Database upgrade required: Add Scene Name Cache
+2014-10-03 11:18:07 DEBUG    MAIN :: cache.db: CREATE TABLE scene_names (tvdb_id INTEGER, name TEXT)
+2014-10-03 11:18:07 DEBUG    MAIN :: Add Scene Name Cache upgrade completed
+2014-10-03 11:18:07 DEBUG    MAIN :: Checking Add Scene Exceptions Provider database upgrade
+2014-10-03 11:18:07 DEBUG    MAIN :: Add Scene Exceptions Provider upgrade not required
+2014-10-03 11:18:07 DEBUG    MAIN :: sickbeard.db: SELECT show_id, tvdb_id, COUNT(tvdb_id) as count FROM tv_shows GROUP BY tvdb_id HAVING count > 1
+2014-10-03 11:18:07 INFO     MAIN :: No duplicate show, check passed
+2014-10-03 11:18:07 DEBUG    MAIN :: sickbeard.db: SELECT showid, season, episode, COUNT(showid) as count FROM tv_episodes GROUP BY showid, season, episode HAVING count > 1
+2014-10-03 11:18:07 INFO     MAIN :: No duplicate episode, check passed
+2014-10-03 11:18:07 DEBUG    MAIN :: sickbeard.db: SELECT episode_id, showid, tv_shows.tvdb_id FROM tv_episodes LEFT JOIN tv_shows ON tv_episodes.showid=tv_shows.tvdb_id WHERE tv_shows.tvdb_id is NULL
+2014-10-03 11:18:07 INFO     MAIN :: No orphan episodes, check passed
+2014-10-03 11:18:07 DEBUG    MAIN :: config_version -> 6
+2014-10-03 11:18:07 DEBUG    MAIN :: Checking if we can use git commands: git version
+2014-10-03 11:18:07 DEBUG    MAIN :: Executing git version with your shell in /Users/cman/Temp/sickbeard_ynh/sources/Sick-Beard
+2014-10-03 11:18:07 DEBUG    MAIN :: git output: git version 2.1.0
+2014-10-03 11:18:07 DEBUG    MAIN :: git version : returned successful
+2014-10-03 11:18:07 DEBUG    MAIN :: Using: git
+2014-10-03 11:18:07 DEBUG    MAIN :: Executing git symbolic-ref -q HEAD with your shell in /Users/cman/Temp/sickbeard_ynh/sources/Sick-Beard
+2014-10-03 11:18:07 DEBUG    MAIN :: git output: refs/heads/development
+2014-10-03 11:18:07 DEBUG    MAIN :: git symbolic-ref -q HEAD : returned successful
+2014-10-03 11:18:07 DEBUG    MAIN :: Retrieving the last check time from the DB
+2014-10-03 11:18:07 DEBUG    MAIN :: sickbeard.db: SELECT * FROM info
+2014-10-03 11:18:07 INFO     MAIN :: Starting Sick Beard on http://0.0.0.0:8081/
+2014-10-03 11:18:07 INFO     MAIN :: Loading initial show list
+2014-10-03 11:18:07 DEBUG    MAIN :: sickbeard.db: SELECT * FROM tv_shows
+2014-10-03 11:18:07 DEBUG    CHECKVERSION :: Starting new thread: CHECKVERSION
+2014-10-03 11:18:07 INFO     CHECKVERSION :: Checking if git needs an update
+2014-10-03 11:18:07 DEBUG    CHECKVERSION :: Executing git rev-parse HEAD with your shell in /Users/cman/Temp/sickbeard_ynh/sources/Sick-Beard
+2014-10-03 11:18:07 DEBUG    CHECKVERSION :: git output: 9dc20d8d4ef12a2bea75c9fa1f45be962383fe45
+2014-10-03 11:18:07 DEBUG    CHECKVERSION :: git rev-parse HEAD : returned successful
+2014-10-03 11:18:07 DEBUG    CHECKVERSION :: Executing git fetch origin with your shell in /Users/cman/Temp/sickbeard_ynh/sources/Sick-Beard
+2014-10-03 11:18:08 DEBUG    CP Server Thread-4 :: sickbeard.db: SELECT showid, (SELECT COUNT(*) FROM tv_episodes WHERE showid=tv_eps.showid AND season > 0 AND episode > 0 AND status IN (2,3276802,202,402,102,802,12802,25602,1602,3202,6402,9,3276809,209,409,109,809,12809,25609,1609,3209,6409)) AS ep_snatched, (SELECT COUNT(*) FROM tv_episodes WHERE showid=tv_eps.showid AND season > 0 AND episode > 0 AND status IN (4,3276804,204,404,104,804,12804,25604,1604,3204,6404,6)) AS ep_downloaded, (SELECT COUNT(*) FROM tv_episodes WHERE showid=tv_eps.showid AND season > 0 AND episode > 0  AND ((airdate > 1 AND airdate <= 735509 AND (status = 5 OR status = 3))  OR (status IN (2,3276802,202,402,102,802,12802,25602,1602,3202,6402,9,3276809,209,409,109,809,12809,25609,1609,3209,6409)) OR (status IN (4,3276804,204,404,104,804,12804,25604,1604,3204,6404,6)))) AS ep_total,  (SELECT airdate FROM tv_episodes WHERE showid=tv_eps.showid AND airdate >= 735509 AND status = 1 ORDER BY airdate ASC LIMIT 1) AS ep_airs_next  FROM tv_episodes tv_eps GROUP BY showid
+2014-10-03 11:18:08 DEBUG    CP Server Thread-4 :: sickbeard.db: SELECT (SELECT COUNT(*) FROM tv_episodes WHERE season > 0 AND episode > 0 AND status IN (2,3276802,202,402,102,802,12802,25602,1602,3202,6402,9,3276809,209,409,109,809,12809,25609,1609,3209,6409)) AS ep_snatched, (SELECT COUNT(*) FROM tv_episodes WHERE season > 0 AND episode > 0 AND status IN (4,3276804,204,404,104,804,12804,25604,1604,3204,6404,6)) AS ep_downloaded, (SELECT COUNT(*) FROM tv_episodes WHERE season > 0 AND episode > 0  AND ((airdate > 1 AND airdate <= 735509 AND (status = 5 OR status = 3))  OR (status IN (2,3276802,202,402,102,802,12802,25602,1602,3202,6402,9,3276809,209,409,109,809,12809,25609,1609,3209,6409)) OR (status IN (4,3276804,204,404,104,804,12804,25604,1604,3204,6404,6)))) AS ep_total  FROM tv_episodes tv_eps LIMIT 1
+2014-10-03 11:18:12 INFO     MAIN :: Signal 2 caught, saving and exiting...
+2014-10-03 11:18:12 INFO     MAIN :: Aborting all threads
+2014-10-03 11:18:12 INFO     MAIN :: Waiting for the SEARCH thread to exit
+2014-10-03 11:18:12 DEBUG    CHECKVERSION :: git output: Killed by signal 2.
+2014-10-03 11:18:12 ERROR    CHECKVERSION :: git fetch origin returned : Killed by signal 2., treat as error for now
+2014-10-03 11:18:12 ERROR    CHECKVERSION :: Unable to contact github, can't check for update
+2014-10-03 11:18:12 INFO     CHECKVERSION :: No update needed
+2014-10-03 11:18:12 INFO     CHECKVERSION :: Check scene exceptions update
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: cache.db: SELECT tvdb_id, show_name FROM scene_exceptions WHERE provider=?; with args ['sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 INFO     CHECKVERSION :: Updating scene exceptions
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [272391, u'Karl Pilkington The Moaning Of Life', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [264535, u'Storage Wars NY', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [247824, u'The Voice (US)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [247824, u'The Voice', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [71699, u'The Outer Limits (1963)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [253982, u'Common Law (2012)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [253982, u'Common Law', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [79905, u'Tim and Eric Awesome Show', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [79905, u'Tim and Erics Awesome Show Great Job', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [276515, u'Curse of Oak Island', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [249892, u'Extreme Chef', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [249892, u'Extreme Chefs', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [276526, u'Legend of Mick Dodge', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [244061, u'Steins Gate', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [260165, u'Chasing UFOs', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [260165, u'National Geographic Chasing UFOs', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [248503, u'The Hour (2011)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [248503, u'The Hour UK 2011', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [248503, u'The Hour 2011', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [273424, u'David Attenboroughs Rise Of Animals', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [71788, u'Superman: The Animated Series', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [71788, u'Superman TAS', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [260206, u'Gordon Behind Bars', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [260206, u'Gordon Ramsay Behind Bars', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [254067, u'DUI', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [254067, u'D U I', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [254067, u'D.U.I', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [249980, u'Restoration Home', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [249980, u'Restoration Home UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [280939, u'Rush US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [145541, u'The Marriage Ref', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [145541, u'The Marriage Ref US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [82060, u'Who Do You Think You Are AU', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [281624, u'Manhattan Love Story US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [80018, u'Nick Cannon Presents Wild N Out', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [266388, u'David Attenboroughs Natural Curiosities', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [250015, u'The Indestructibles', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [250015, u'The Indestructibles US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [254112, u'Titanic 2012', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [282786, u'Utopia AU', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [73893, u'Enterprise', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [84146, u'Secret Millionaire', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [84146, u'Secret Millionaire US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [282654, u'Utopia US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [198841, u'Undercover Boss (Au)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [198841, u'Undercover Boss Australia', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [194751, u'Conan', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [194751, u'Conan (2010)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [270528, u'Blood And Oil 2013', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [92361, u'Known Universe', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [92361, u'National Geographic Known Universe', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [256204, u'666 Park Avenue', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [256204, u'Park Avenue', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [198861, u'Film 2014 with Claudia Winkleman', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [198861, u'Film 2013 with Claudia Winkleman', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [198861, u'Film 2012 with Claudia Winkleman', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [198861, u'Film 2011 with Claudia Winkleman', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [255693, u'Undercover Boss Canada', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [255693, u'Undercover Boss CA', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [262353, u'Leaving', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [262353, u'Leaving UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [82135, u'The Gruen Transfer', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [82135, u'Gruen Nation', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [82135, u'Gruen Sweat', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [139481, u'18 Kids And Counting', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [139481, u'17 Kids And Counting', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [213211, u'Love Hate', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [262368, u'Vikings (2012)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [262368, u'Vikings UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [168161, u'Law & Order: Los Angeles', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [168161, u'Law & Order: LA', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [78051, u'Never Mind the Buzzcocks', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [78051, u'Never Mind the Buzzcocks UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [80101, u'Harry And Paul', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [262377, u'Sarah Beenys Double Your House for Half the Money', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [129261, u'Spartacus', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [129261, u'Spartacus Blood and Sand', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [129261, u'Spartacus Vengeance', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [250095, u'The Marriage Ref(UK)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [250095, u'The Marriage Ref UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [78075, u'Beast Machines Transformers', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [88321, u"Tabatha's Salon Takeover", 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [264450, u'Legit', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [264450, u'Legit US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [80159, u'Sanctuary', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [80159, u'Sanctuary US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [250153, u'Top Design Australia', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [250153, u'Top Design AU', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [256300, u'Richard Hammonds Crash Course', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [256300, u"Richard Hammond's Crash Course", 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [78125, u'22 Minutes', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [268591, u'The Tomorrow People US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [268591, u'The Tomorrow People', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [268591, u'Tomorrow People', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [71985, u'Taboo', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [71985, u'National Geographic Taboo', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [260489, u'National Geographic Caught In The Act', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [71998, u'Jimmy Kimmel Live', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [71998, u'Jimmy Kimmel', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [76104, u'The Mole AU', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [76107, u'Doctor Who Classic', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [94551, u'Parenthood (2010)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [94551, u'Parenthood', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [94551, u'Parenthood 2010', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [84312, u'Click (2000)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [84312, u'Click UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [172381, u'Silent Library (US)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [80226, u'Inspector George Gently', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [80226, u'George Gently', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [76133, u'Poirot', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [76133, u"Agatha Christie's Poirot", 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [76133, u'Agatha Christie Poirot', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [280937, u'Satisfaction US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [166251, u'Four Corners', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [280949, u'Brandi and Jarrod-Married to the Job', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [199031, u'Click and Clack As the Wrench Turns', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [281664, u'Partners 2014', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [76119, u'NOVA', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [76119, u'PBS NOVA', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [76168, u'Batman: The Animated Series', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [76168, u'Batman: TAS', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [197001, u'Supernatural The Animation', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [197001, u'Supernatural: TAS', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [256394, u'Lab Rats', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [252312, u'Jessie', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [250267, u'The Food Truck NZ', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [252319, u"Dragons' Den: How To Win In The Den", 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [252319, u'How to win in the Den', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [139681, u"The Smoking Gun Presents: The World's Dumbest", 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [139681, u"World's Dumbest", 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [80290, u'Jamie Oliver Jamies Kitchen', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [278976, u'The Comic Artist and His Assistants', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [283073, u'Fat N Furious-Rolling Thunder', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [116811, u'Dragons Den CA', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [248261, u'National Terrorism Strike Force: San Diego: Sport Utility Vehicle', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [248261, u'National Terrorism Strike Force: San Diego: SUV', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [248261, u'NTSF:SD:SUV::', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [248261, u'NTSF SD SUV', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [82374, u'Ultimate Factories', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [82374, u'National Geographic Ultimate Factories', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [76235, u"America's Funniest Home Videos", 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [76235, u'AFHV', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [76237, u'Big Brother (Australia)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [76237, u'Big Brother AU', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72150, u'BBC Later With Jools Holland', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [250331, u"Richard Hammond's Journey To...", 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [250331, u'Richard Hammonds Journey To', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72164, u'The O.C.', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72164, u'The OC', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [264679, u'National Geographic UFO Europe Untold Stories', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [260586, u'Cosmos A Space Time Odyssey', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [80379, u'The Big Bang Theory', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [80379, u'Big Bang Theory', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [80379, u'TBBT', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [90621, u'Discovery Channel Sunrise Earth', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [90621, u'Sunrise Earth', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [270849, u'I Didnt Do It', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72194, u'The Ellen Degeneres Show', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72194, u'Ellen Degeneres', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [246281, u'King', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [246281, u'King (2011)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [82448, u'Project Runway Australia', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [82448, u'Project Runway AU', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [90651, u'Selling Houses Australia', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [90651, u'Selling Houses Australia Extreme', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [273005, u'Ace of The Diamond', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72224, u'The Outer Limits (1995)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72224, u'The Outer Limits: TNS', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72224, u'The Outer Limits: The New Series', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [82467, u'Eastbound Down', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [82467, u'Eastbound and Down', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72231, u'Real Time with Bill Maher', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72231, u'Real Time With Bill Maher Plus Overtime', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [74281, u'Have I Got News for You Uncut', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [88631, u'Krod Mandoon', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [283196, u'Married at First Sight US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [264776, u'Adam Hills In Gordon St Tonight', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [250445, u'The Renovators', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [250445, u'The Renovators AU', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [174681, u'Scooby-Doo! Mystery Incorporated', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [174681, u'Scooby Doo Mystery Incorporated', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [275039, u'Sailor Moon Crystal', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [164451, u'Carlos (2010)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [273002, u'I Couldnt Become a Hero So I Reluctantly Decided to Get a Job', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72301, u'Penn and Teller Bullshit', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72306, u'The Venture Brothers', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [90751, u'Travel Channel Planet Food', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [262787, u'Homefront UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [74372, u'Blue Planet', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [80522, u'Who Do You Think You Are?', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [80522, u'Who Do You Think You Are UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [283291, u'Beyonce X10 The Mrs Carter Show World Tour', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [250525, u'Hamish And Andys Gap Year', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [250525, u'Hamish And Andys Euro Gap Year', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [139941, u'Childrens Hospital (US)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [139941, u'Childrens Hospital', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [80552, u'Kitchen Nightmares (US)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [80552, u'Kitchen Nightmares US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [168621, u'Melissa & Joey', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [168621, u'Melissa and Joey', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [250544, u'Match of the Day Two', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [277169, u'Faking It 2014', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [277171, u'Tough Young Teachers UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [70327, u'Buffy the Vampire Slayer', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [70327, u'Buffy', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [70336, u'The Tonight Show with Jay Leno', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [70336, u'Jay Leno', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [88771, u"The Apprentice: You're Fired!", 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [88771, u'The Apprentice UK Youre Fired', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [88771, u'The Apprentice UK Your Fired', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [88771, u'The Apprentice Youre Fired', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [281467, u'Matador US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [131791, u'Sci-Fi Science', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [131791, u'Sci-Fi Science: Physics of the Impossible', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [131791, u'Sci Fi Science Physics of the Impossible', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [258773, u'Zero Hour US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [260839, u'MasterChef Allstars AU', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72829, u'The Apprentice', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72829, u'The Apprentice US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [80625, u'MegaStructures', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [80625, u'National Geographic Megastructures', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72449, u'Stargate SG1', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [80646, u'Frontline (US)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [80646, u'Frontline US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [262927, u"Ian Hislop's Stiff Upper Lip", 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [262927, u'Ian Hislops Stiff Upper Lip An Emotional History Of Britain', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [74512, u'Wife Swap (US)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [80665, u'The Next Iron Chef Redemption', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [248618, u'The Amazing Race Australia', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [248618, u'The Amazing Race AU', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [285507, u'The Code AU', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [262980, u'House of Cards 2013', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [254798, u'Stella (2012)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [254798, u'Stella UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [263002, u'Switch (2012)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [263002, u'Switch UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72546, u'CSI', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72549, u'Big Brother UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72553, u'Mighty Morphin Power Rangers', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72553, u'Power Rangers Zeo', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72553, u'Power Rangers Turbo', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72553, u'Power Rangers in Space', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72553, u'Power Rangers Lost Galaxy', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72553, u'Power Rangers Ninja Storm', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72553, u'Power Rangers Operation Overdrive', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72553, u'Power Rangers Samurai', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72553, u'Power Rangers Super Samurai', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72553, u'Power Rangers Megaforce', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72553, u'Power Rangers Super Megaforce', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [140141, u'Undercover Boss (US)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [140141, u'Undercover Boss US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [248699, u'24 Hours In A And E', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [74626, u'The X Factor', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [74626, u'The X Factor UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [271241, u'Deal With It US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [81391, u'Wie is de mol?', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [81391, u'Wie is de mol', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [81391, u'widm', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [76703, u'Pokemon', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [76706, u'Big Brother (US)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [281511, u'Blackish', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [70572, u'Little Rascals', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [70572, u'The Little Rascals', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [70578, u'Highway Patrol', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [70578, u'Highway Patrol (AU)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [73545, u'Battlestar Galactica', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [238521, u'Adam Eva', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [281535, u'Forever US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [76736, u'The Black Adder', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [76736, u'BlackAdder', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [166851, u'Noise Control (NZ)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [267206, u'Low Winter Sun US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [78804, u'Doctor Who 2005', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [248789, u'Smash (2012)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [248789, u'Smash', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [187351, u'This is England', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [187351, u'This is England 86', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [187351, u'This is England 88', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [193501, u'XIII', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [193501, u'XIII (2011)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [193501, u'XIII The Series (2011)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [84133, u'Manhunters: Fugitive Task Force', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [84133, u'Manhunters - Fugitive Task Force', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [230371, u'David Attenborough Madagascar', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [82918, u'Diners, Drive-ins and Dives', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [82918, u'Diners Drive ins and Dives', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [82918, u'Diners Driveins and Dives', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [273383, u'The House That 100k Built', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [76779, u'WWE Monday Night RAW', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [248812, u'Dont Trust the Bitch in Apartment 23', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [248812, u'Apartment 23', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [220141, u'Wolverine', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [220141, u'Wolverine 2011', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [283630, u'Doraemon US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [267260, u'Intelligence US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [175101, u'Travel Channel Culture Shock', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [78846, u'Shameless UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [248834, u'Last Man Standing (2011)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [248834, u'Last Man Standing US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [248834, u'Last Man Standing', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [248835, u'Once Upon a Time (2011)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [248835, u'Once Upon a Time', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [248836, u'The River', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [76808, u'Whose Line is it Anyway US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [248841, u'Scandal US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72716, u'QI XL', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72716, u'BBC QI XL', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72716, u'BBC QI XL (Quite Interesting)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72716, u'BBC QI', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72716, u'BBC QI (Quite Interesting)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [74768, u'The Block', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [74768, u'The Block AU', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [74768, u'The Block All Stars', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [74768, u'The Block All Stars AU', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [74768, u'The Block AU All Stars', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [74768, u'The Block AU Sky High', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [74768, u'The Block AU Fans vs Faves', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [74768, u'The Block AU Glasshouse', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [76817, u'The Ponderosa', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [80915, u'La Linea 1972', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [277528, u'Love Child AU', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [281776, u'Youre the Worst', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [259106, u'Emily Owens M D', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [259106, u'Emily Owens MD', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [265252, u'MasterChef Australia The Professionals', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [275493, u'Backchat With Jack Whitehall And His Dad', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [105521, u'The Colony', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [105521, u'The Colony (US)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [279603, u'The Face AU', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [84489, u'Masterchef', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [84489, u'MasterChef UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [271421, u'Clarence US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [277568, u'Babylon', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [252019, u'The Bridge 2011', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [80964, u'Yo Gabba Gabba', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [255045, u'The L.A. Complex', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [255045, u'The LA Complex', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [70726, u'Babylon 5', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [70726, u'Babylon5', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [277580, u'30 For 30 Soccer Stories', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [205901, u'Transformers Prime', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [205901, u'Transformers Prime Beast Hunters', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [261202, u'DreamWorks Dragons: Riders of Berk', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [261202, u'Dragons Riders of Berk', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [261202, u'DreamWorks Dragons Riders of Berk', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [261202, u'Dragons Defenders of Berk', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [164951, u'Shit My Dad Says', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [80994, u'National Geographic Channel Naked Science', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [80994, u'National Geographic Naked Science', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [156771, u'National Geographic Shark Men', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [78949, u'Thomas The Tank Engine & Friends', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [78949, u'Thomas And Friends', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [261222, u'The Burn With Jeff Ross', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [261222, u'Jeff Ross', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [248935, u'Touch (2012)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [248935, u'Touch', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [70760, u'Celebrity Big Brother', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [70760, u'Celebrity Big Brother UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [78956, u'So You Think You Can Dance US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [261240, u'H+', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [261240, u'H', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [76925, u'Dark Shadows The Revival Series 1991', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [248962, u'Transporter The Series', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [74897, u'Hells Kitchen US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [74897, u'Hells Kitchen', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [265373, u'David Attenboroughs Galapagos', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [120541, u'Russell Howards Good News', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [120541, u'Russell Howards Good News (UK)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [83115, u'The Worlds Strictest Parents UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [85168, u'How the Earth Was Made', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [85168, u'History channel How the Earth Was Made', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [265393, u'The Legends of Chima', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [83123, u'Merlin', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [83123, u'Merlin (2008)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [271902, u'Legend of Shelby The Swamp Man', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [265406, u'Out There 2013', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [79040, u'Britains Next Top Model', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [79040, u'Britain and Irelands Next Top Model', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [74946, u'C O P S', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [263365, u'Marvels Agents of S H I E L D', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [263365, u'Marvel Agents Of SHIELD', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [263365, u'Agents of S H I E L D', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [212171, u'My Little Pony: Friendship is Magic', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [212171, u'My Little Pony Friendship is Magic', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [273616, u'Pokemon Origins', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [95441, u'NCIS: Los Angeles', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [95441, u'NCIS LA', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [70870, u'The Real World Road Rules Challenge', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [70870, u'The Challenge Cutthroat', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [70870, u'The Challenge Battle Of The Exes', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [70870, u'The Challenge Rivals', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [70870, u'The Challenge Battle Of The Seasons 2', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [70870, u'The Challenge Rivals II', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [70870, u'The Challenge Rivals 2', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [70870, u'The Challenge Free Agents', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [263387, u'Cedar Cove', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [269538, u'Satisfaction CA', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [279779, u'Sensitive Skin CA', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [284881, u'My Kitchen Rules New Zealand', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [85228, u'Law & Order: UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [85228, u'Law and Order UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [113901, u'The Super Hero Squad Show', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [113901, u'The Super Hero Squad', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [208111, u'Gold Rush', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [208111, u'Gold Rush: Alaska', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [118001, u'Beauty and the Geek Australia', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [118001, u'Beauty and the Geek AU', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [195831, u"Zane Lamprey's Drinking Made Easy", 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [210171, u'The Killing (2011)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [210171, u'The Killing', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [152831, u'Adventure Time with Finn and Jake', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [275723, u'Panic Button US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [269584, u'Rake US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [269586, u'Brooklyn Nine Nine', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [269589, u'Dads', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [267542, u'Naked and Marooned with Ed Stafford', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [267543, u'Hulk and the Agents of S M A S H', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [267543, u'Hulk and the Agents of SMASH', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [75032, u'Cathouse The Series', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [75032, u'CatHouse', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [220441, u'R L Stines The Haunting Hour The Series', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [220441, u'R L Stines The Haunting Hour', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [220441, u"R.L. Stine's The Haunting Hour The Series", 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [193821, u'Iron Man 2010', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [193821, u'Iron Man 2011', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [95521, u'National Geographic Ancient Megastructures', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [77120, u'Aqua Teen Hunger Force', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [77120, u'Aqua Unit Patrol Squad', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [77120, u'Aqua Unit Patrol Squad 1', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [77120, u'Aqua Something You Know Whatever', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [275777, u'Wild Burma', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [83268, u'Star Wars The Clone Wars 2008', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [83268, u'Star Wars The Clone Wars', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [269637, u'The Michael J Fox Show', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [269641, u'Chicago P D', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [269641, u'Chicago PD', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [268855, u'Turbo FAST', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [81230, u'Celebrity Rehab with Dr Drew', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [75088, u'David Letterman', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [269650, u'Resurrection US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [269651, u'Mind Games', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [269653, u'The Goldbergs', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [222551, u'Only in America With Larry the Cable Guy', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [222551, u'Only in America', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [259418, u'David Attenborough Kingdom Of Plants', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [273761, u'Master Chef Canada', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [83299, u'Magics Biggest Secrets Finally Revealed', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [79212, u'The Dog Whisperer', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [79212, u'Dog Whisperer', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [271728, u'Pete Holmes Show', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [253323, u'Ninjago Masters Of Spinjitzu', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [253323, u'LEGO NinjaGo: Masters of Spinjitzu', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [249229, u'A.N.T Farm', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [249229, u'ANT Farm', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [75166, u'The Biggest Loser US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [122281, u"Garrow's Law - Tales from the Old Bailey", 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [122281, u'Garrows Law', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [284076, u'Thats Incredible 2014', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [267709, u'Kesha My Crazy Beautiful Life', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [81346, u'Underbelly', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [81346, u'The Underbelly Files', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [81346, u'Underbelly Files', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [81346, u'Underbelly A Tale of Two Cities', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [81346, u'Underbelly A Tale Of Two Cities UNCUT', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [81346, u'Underbelly Razor', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [81346, u'Underbelly The Golden Mile', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [81346, u'Underbelly Badness', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [81346, u'Underbelly Squizzy', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [97731, u'Tosh.0', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [97731, u'Tosh 0', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [251334, u'Lawless UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [269783, u'Reckless US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [73178, u'Two Guys a Girl and a Pizza Place', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [280027, u'Off the Bat from the MLB Fan Cave', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [79330, u'Jericho', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [265467, u'Polar Bear Family and Me', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [83430, u'National Geographic Banged Up Abroad', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [81386, u'Being Human', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [81386, u'Being Human (UK)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [189931, u'RBT (AU)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [132591, u'7 Days (2009)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [132591, u'7 Days NZ', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [81491, u'Big Brother After Dark', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [81491, u'Big Brother US After Dark', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [81491, u'Big Brother After Dark US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [259669, u'DaVincis Demons', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [259669, u'Vincis Demons', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [259669, u"Vinci's Demons", 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [138761, u'Arn The Knight Templar', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [77398, u'X-Files', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [83462, u'Castle (2009)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [83462, u'Castle', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [83462, u'Castle 2009', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [128521, u'Million Dollar Listing', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [257550, u'Bellator FC', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [249361, u'Boss (2011)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [249361, u'Boss', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [251418, u'Frozen Planet', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [251418, u'David Attenborough Frozen Planet', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [251418, u'BBC Frozen Planet', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [73244, u'The Office (US)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [73244, u'The Office', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [79389, u'Nightmares and Dreamscapes', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [73246, u'30 Minute Meals', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [73246, u'30 Minute Meals with Rachel Ray', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [122401, u'Discovery Channel Cool Stuff and How it works', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [122401, u'Cool Stuff and How it works', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [73255, u'House', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [73255, u'House M D', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [253485, u'The Syndicate 2012', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [253485, u'The Syndicate', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [261690, u'The Americans', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [192061, u'Young Justice', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [192061, u'Young Justice Invasion', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [271936, u'Played CA', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [155201, u'Louie (2010)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [155201, u'Louie', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [273986, u'Breathless UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [73290, u'60 Minutes (US)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [204371, u'AuctionHunters', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [247381, u'Superscrimpers', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [271958, u'Arsenio Hall', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [265145, u'David Attenboroughs Africa', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [71256, u'The Daily Show', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [71256, u'The Daily Show with Jon Stewart', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [212571, u'Come Fly With Me (2010)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [271632, u'Lucas Bros Moving Company', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [253543, u'All American Muslim', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [253543, u'All-American Muslim', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [257645, u'Ultimate Spider-man', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [257645, u'Ultimate Spiderman', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [257645, u'Ultimate Spider man', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [257645, u'Ultimate Spider-Man Web Warriors', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [120431, u'Food Factory', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [271984, u'Wonderland AU', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [75382, u'The Ultimate Fighter Live', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [75382, u'The Ultimate Fighter Fridays', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [75382, u'The Ultimate Fighter', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [75393, u'The X Factor (AU)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [75393, u'The X Factor Australia', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [77444, u'This Old House Program', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [149101, u'A League of Their Own (2010)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [149101, u'A League of Their Own UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [165521, u'Girls Gone Wild The Search for the Hottest Girl in America', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [81559, u'The Biggest Loser Australia', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [81559, u'The Biggest Loser AU', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [122521, u'The Fresh Beat Band', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [122521, u'Fresh Beat Band', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [81563, u'Border Security AU Front Line', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [81563, u"Border Security Australia's Frontline", 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [73387, u'The Late Late Show with Craig Ferguson', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [73387, u'Craig Ferguson', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [81580, u'Come Dine With Me UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [274099, u'At Midnight', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [276148, u'Review With Forrest MacNeil', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [79565, u'The Real Hustle', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [79565, u'The Real Hustle UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [274129, u'Klondike 2014', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [194261, u'PhoneShop', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [194261, u'Phone Shop', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [77526, u'Star Trek: TOS', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [100061, u'Undercover Boss', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [100061, u'Undercover Boss UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72073, u'Star Trek DS9', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [79590, u'Dancing With The Stars (US)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [253682, u'Project Runway Allstars', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [253682, u'Project Runway All-Stars', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [196351, u'T.U.F.F. Puppy', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [196351, u'TUFF Puppy', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [83714, u'Genius', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [83714, u'Genius With Dave Gormand', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [81670, u'The Murdoch Mysteries', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [81670, u'Murdoch Mysteries', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [81670, u'The Murdoch Mysteries (2008)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72663, u'Accused', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [72663, u'Accused UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [257804, u'Too Cute!', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [280339, u'Food Fighters US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [71462, u'Sharpes', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [280361, u'Prey UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [284458, u'The Chair', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [110381, u'Archer', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [71470, u'Star Trek: The Next Generation', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [71470, u'Star Trek TNG', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [75567, u'The Xtra Factor', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [75567, u'The Xtra Factor UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [79668, u'Anthony Bourdain: No Reservations', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [79668, u'No Reservations', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [83774, u'Antiques Roadshow (UK)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [83774, u'Antiques Roadshow UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [71489, u'Law and Order CI', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [71489, u'Law & Order: CI', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [221001, u'10 O Clock Live', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [202571, u'The Trip to Italy', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [210771, u'Cake Boss Next Great Baker', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [276312, u'From Dusk Til Dawn', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [276312, u'From Dusk Till Dawn', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [227161, u'Oprah Presents Master Class', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [227161, u"Oprah's Master Class", 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [73562, u'Beast Wars Transformers', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [264030, u'Avengers Assemble', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [264030, u'Marvels Avengers Assemble', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [259946, u'Location Location Location AU', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [259047, u'VGHS', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [249708, u'The Car Show', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [249708, u'The Car Show 2011', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [73587, u'The Twilight Zone 1959', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [73587, u'The Twilight Zone 1960', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [73587, u'The Twilight Zone 1961', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [73587, u'The Twilight Zone 1962', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [73587, u'The Twilight Zone 1963', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [73587, u'The Twilight Zone 1964', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [280446, u'The Tom and Jerry Show', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [73599, u'Dark Shadows (1966)', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [73599, u'Dark Shadows The Beginning', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [89991, u'Out of the Wild: The Alaskan Experiment', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [89991, u'Out of the Wild: Venezuela', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [276360, u'19-2 CA', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [223161, u'CBC Marketplace', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [264085, u'The Bridge US', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [79771, u'Air Crash Investigation', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [79771, u'Air Crash Investigation Mayday', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [79771, u'National Geographic Air Crash Investigation', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [251807, u'Green Lantern: The Animated Series', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [251807, u'Green Lantern TAS', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [251807, u'Green Lantern The Animated Series', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [77733, u'Degrassi: The Next Generation', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [77733, u'Degrassi TNG', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [77733, u'Degrassi', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [73641, u'King of Queens', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [75692, u'Law & Order: SVU', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [270261, u'Jimmy Fallon', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [270262, u'Seth Meyers', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [79177, u'Life On Mars UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [83897, u'Life After People: The Series', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [92091, u'MasterChef Australia', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [92091, u'MasterChef AU', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [263506, u'Jamies 16 Minute Meals', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [264141, u'Falcon', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [79824, u'Naruto Shippuden', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [77780, u'G.I. Joe', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [77780, u'GI Joe', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [77780, u'G I Joe', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [79836, u"Dragon's Den (UK)", 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [79836, u'Dragons Den UK', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [178141, u'My Ghost Story', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [73696, u'CSI: New York', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [270307, u'Family SOS with Jo Frost', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [75748, u'The Culture Show Uncut', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [253931, u'Rob', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: INSERT INTO scene_exceptions (tvdb_id,show_name,provider) VALUES (?,?,?); with args [70994, u'MASH', 'sb_tvdb_scene_exceptions']
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: Transaction with 651 query's executed
+2014-10-03 11:18:13 INFO     CHECKVERSION :: Clear name cache
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: cache.db: DELETE FROM scene_names WHERE tvdb_id = ? with args [0]
+2014-10-03 11:18:13 INFO     CHECKVERSION :: Performing a vacuum on database: cache.db
+2014-10-03 11:18:13 DEBUG    CHECKVERSION :: cache.db: VACUUM
+2014-10-03 11:18:13 INFO     MAIN :: Waiting for the BACKLOG thread to exit
+2014-10-03 11:18:14 INFO     MAIN :: Waiting for the SHOWUPDATER thread to exit
+2014-10-03 11:18:15 INFO     MAIN :: Waiting for the VERSIONCHECKER thread to exit
+2014-10-03 11:18:16 INFO     MAIN :: Waiting for the SHOWQUEUE thread to exit
+2014-10-03 11:18:16 INFO     MAIN :: Waiting for the SEARCHQUEUE thread to exit
+2014-10-03 11:18:17 INFO     MAIN :: Waiting for the POSTPROCESSER thread to exit
+2014-10-03 11:18:18 INFO     MAIN :: Waiting for the PROPERFINDER thread to exit
+2014-10-03 11:18:19 INFO     MAIN :: Saving all shows to the database
+2014-10-03 11:18:19 INFO     MAIN :: Saving config file to disk
+2014-10-03 11:18:19 INFO     MAIN :: Killing cherrypy
+2014-10-03 11:20:08 INFO     MAIN :: Checking database structure...
+2014-10-03 11:20:08 DEBUG    MAIN :: Checking Initial Schema database upgrade
+2014-10-03 11:20:08 DEBUG    MAIN :: sickbeard.db: SELECT 1 FROM sqlite_master WHERE name = ?; with args ('tv_shows',)
+2014-10-03 11:20:08 DEBUG    MAIN :: sickbeard.db: SELECT 1 FROM sqlite_master WHERE name = ?; with args ('db_version',)
+2014-10-03 11:20:08 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 11:20:08 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 11:20:08 DEBUG    MAIN :: Initial Schema upgrade not required
+2014-10-03 11:20:08 DEBUG    MAIN :: Checking Add Size And Scene Name Fields database upgrade
+2014-10-03 11:20:08 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 11:20:08 DEBUG    MAIN :: Add Size And Scene Name Fields upgrade not required
+2014-10-03 11:20:08 DEBUG    MAIN :: Checking Rename Season Folders database upgrade
+2014-10-03 11:20:08 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 11:20:08 DEBUG    MAIN :: Rename Season Folders upgrade not required
+2014-10-03 11:20:08 DEBUG    MAIN :: Checking Add1080p And Raw Qualities database upgrade
+2014-10-03 11:20:08 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 11:20:08 DEBUG    MAIN :: Add1080p And Raw Qualities upgrade not required
+2014-10-03 11:20:08 DEBUG    MAIN :: Checking Add Showid Tvdbid Index database upgrade
+2014-10-03 11:20:08 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 11:20:08 DEBUG    MAIN :: Add Showid Tvdbid Index upgrade not required
+2014-10-03 11:20:08 DEBUG    MAIN :: Checking Add Last Update database upgrade
+2014-10-03 11:20:08 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 11:20:08 DEBUG    MAIN :: Add Last Update upgrade not required
+2014-10-03 11:20:08 DEBUG    MAIN :: Checking Add Require And Ignore Words database upgrade
+2014-10-03 11:20:08 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 11:20:08 DEBUG    MAIN :: Add Require And Ignore Words upgrade not required
+2014-10-03 11:20:08 DEBUG    MAIN :: Checking Cleanup History And Specials database upgrade
+2014-10-03 11:20:08 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 11:20:08 DEBUG    MAIN :: Cleanup History And Specials upgrade not required
+2014-10-03 11:20:08 DEBUG    MAIN :: Checking Add Skip Notifications database upgrade
+2014-10-03 11:20:08 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 11:20:08 DEBUG    MAIN :: Add Skip Notifications upgrade not required
+2014-10-03 11:20:08 DEBUG    MAIN :: Checking Add History Source database upgrade
+2014-10-03 11:20:08 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 11:20:08 DEBUG    MAIN :: Add History Source upgrade not required
+2014-10-03 11:20:08 INFO     MAIN :: Checking database structure...
+2014-10-03 11:20:08 DEBUG    MAIN :: Checking Initial Schema database upgrade
+2014-10-03 11:20:08 DEBUG    MAIN :: cache.db: SELECT 1 FROM sqlite_master WHERE name = ?; with args ('lastUpdate',)
+2014-10-03 11:20:08 DEBUG    MAIN :: Initial Schema upgrade not required
+2014-10-03 11:20:08 DEBUG    MAIN :: Checking Add Scene Exceptions database upgrade
+2014-10-03 11:20:08 DEBUG    MAIN :: cache.db: SELECT 1 FROM sqlite_master WHERE name = ?; with args ('scene_exceptions',)
+2014-10-03 11:20:08 DEBUG    MAIN :: Add Scene Exceptions upgrade not required
+2014-10-03 11:20:08 DEBUG    MAIN :: Checking Add Scene Name Cache database upgrade
+2014-10-03 11:20:08 DEBUG    MAIN :: cache.db: SELECT 1 FROM sqlite_master WHERE name = ?; with args ('scene_names',)
+2014-10-03 11:20:08 DEBUG    MAIN :: Add Scene Name Cache upgrade not required
+2014-10-03 11:20:08 DEBUG    MAIN :: Checking Add Scene Exceptions Provider database upgrade
+2014-10-03 11:20:08 DEBUG    MAIN :: Add Scene Exceptions Provider upgrade not required
+2014-10-03 11:20:08 DEBUG    MAIN :: sickbeard.db: SELECT show_id, tvdb_id, COUNT(tvdb_id) as count FROM tv_shows GROUP BY tvdb_id HAVING count > 1
+2014-10-03 11:20:08 INFO     MAIN :: No duplicate show, check passed
+2014-10-03 11:20:08 DEBUG    MAIN :: sickbeard.db: SELECT showid, season, episode, COUNT(showid) as count FROM tv_episodes GROUP BY showid, season, episode HAVING count > 1
+2014-10-03 11:20:08 INFO     MAIN :: No duplicate episode, check passed
+2014-10-03 11:20:08 DEBUG    MAIN :: sickbeard.db: SELECT episode_id, showid, tv_shows.tvdb_id FROM tv_episodes LEFT JOIN tv_shows ON tv_episodes.showid=tv_shows.tvdb_id WHERE tv_shows.tvdb_id is NULL
+2014-10-03 11:20:08 INFO     MAIN :: No orphan episodes, check passed
+2014-10-03 11:20:08 DEBUG    MAIN :: config_version -> 6
+2014-10-03 11:20:08 DEBUG    MAIN :: Checking if we can use git commands: git version
+2014-10-03 11:20:08 DEBUG    MAIN :: Executing git version with your shell in /Users/cman/Temp/sickbeard_ynh/sources/Sick-Beard
+2014-10-03 11:20:08 DEBUG    MAIN :: git output: git version 2.1.0
+2014-10-03 11:20:08 DEBUG    MAIN :: git version : returned successful
+2014-10-03 11:20:08 DEBUG    MAIN :: Using: git
+2014-10-03 11:20:08 DEBUG    MAIN :: Executing git symbolic-ref -q HEAD with your shell in /Users/cman/Temp/sickbeard_ynh/sources/Sick-Beard
+2014-10-03 11:20:08 DEBUG    MAIN :: git output: refs/heads/development
+2014-10-03 11:20:08 DEBUG    MAIN :: git symbolic-ref -q HEAD : returned successful
+2014-10-03 11:20:08 DEBUG    MAIN :: Retrieving the last check time from the DB
+2014-10-03 11:20:08 DEBUG    MAIN :: sickbeard.db: SELECT * FROM info
+2014-10-03 11:20:08 INFO     MAIN :: Starting Sick Beard on http://0.0.0.0:7779/
+2014-10-03 11:20:08 INFO     MAIN :: Loading initial show list
+2014-10-03 11:20:08 DEBUG    MAIN :: sickbeard.db: SELECT * FROM tv_shows
+2014-10-03 11:20:08 DEBUG    CHECKVERSION :: Starting new thread: CHECKVERSION
+2014-10-03 11:20:08 INFO     CHECKVERSION :: Checking if git needs an update
+2014-10-03 11:20:08 DEBUG    CHECKVERSION :: Executing git rev-parse HEAD with your shell in /Users/cman/Temp/sickbeard_ynh/sources/Sick-Beard
+2014-10-03 11:20:08 DEBUG    CHECKVERSION :: git output: 9dc20d8d4ef12a2bea75c9fa1f45be962383fe45
+2014-10-03 11:20:08 DEBUG    CHECKVERSION :: git rev-parse HEAD : returned successful
+2014-10-03 11:20:08 DEBUG    CHECKVERSION :: Executing git fetch origin with your shell in /Users/cman/Temp/sickbeard_ynh/sources/Sick-Beard
+2014-10-03 11:20:09 DEBUG    CP Server Thread-4 :: sickbeard.db: SELECT showid, (SELECT COUNT(*) FROM tv_episodes WHERE showid=tv_eps.showid AND season > 0 AND episode > 0 AND status IN (2,3276802,202,402,102,802,12802,25602,1602,3202,6402,9,3276809,209,409,109,809,12809,25609,1609,3209,6409)) AS ep_snatched, (SELECT COUNT(*) FROM tv_episodes WHERE showid=tv_eps.showid AND season > 0 AND episode > 0 AND status IN (4,3276804,204,404,104,804,12804,25604,1604,3204,6404,6)) AS ep_downloaded, (SELECT COUNT(*) FROM tv_episodes WHERE showid=tv_eps.showid AND season > 0 AND episode > 0  AND ((airdate > 1 AND airdate <= 735509 AND (status = 5 OR status = 3))  OR (status IN (2,3276802,202,402,102,802,12802,25602,1602,3202,6402,9,3276809,209,409,109,809,12809,25609,1609,3209,6409)) OR (status IN (4,3276804,204,404,104,804,12804,25604,1604,3204,6404,6)))) AS ep_total,  (SELECT airdate FROM tv_episodes WHERE showid=tv_eps.showid AND airdate >= 735509 AND status = 1 ORDER BY airdate ASC LIMIT 1) AS ep_airs_next  FROM tv_episodes tv_eps GROUP BY showid
+2014-10-03 11:20:09 DEBUG    CP Server Thread-4 :: sickbeard.db: SELECT (SELECT COUNT(*) FROM tv_episodes WHERE season > 0 AND episode > 0 AND status IN (2,3276802,202,402,102,802,12802,25602,1602,3202,6402,9,3276809,209,409,109,809,12809,25609,1609,3209,6409)) AS ep_snatched, (SELECT COUNT(*) FROM tv_episodes WHERE season > 0 AND episode > 0 AND status IN (4,3276804,204,404,104,804,12804,25604,1604,3204,6404,6)) AS ep_downloaded, (SELECT COUNT(*) FROM tv_episodes WHERE season > 0 AND episode > 0  AND ((airdate > 1 AND airdate <= 735509 AND (status = 5 OR status = 3))  OR (status IN (2,3276802,202,402,102,802,12802,25602,1602,3202,6402,9,3276809,209,409,109,809,12809,25609,1609,3209,6409)) OR (status IN (4,3276804,204,404,104,804,12804,25604,1604,3204,6404,6)))) AS ep_total  FROM tv_episodes tv_eps LIMIT 1
+2014-10-03 11:20:14 DEBUG    CHECKVERSION :: git output: 
+2014-10-03 11:20:14 DEBUG    CHECKVERSION :: git fetch origin : returned successful
+2014-10-03 11:20:14 DEBUG    CHECKVERSION :: Executing git rev-parse --verify --quiet "@{upstream}" with your shell in /Users/cman/Temp/sickbeard_ynh/sources/Sick-Beard
+2014-10-03 11:20:14 DEBUG    CHECKVERSION :: git output: 9dc20d8d4ef12a2bea75c9fa1f45be962383fe45
+2014-10-03 11:20:14 DEBUG    CHECKVERSION :: git rev-parse --verify --quiet "@{upstream}" : returned successful
+2014-10-03 11:20:14 DEBUG    CHECKVERSION :: Executing git rev-list --left-right "@{upstream}"...HEAD with your shell in /Users/cman/Temp/sickbeard_ynh/sources/Sick-Beard
+2014-10-03 11:20:14 DEBUG    CHECKVERSION :: git output: 
+2014-10-03 11:20:14 DEBUG    CHECKVERSION :: git rev-list --left-right "@{upstream}"...HEAD : returned successful
+2014-10-03 11:20:14 DEBUG    CHECKVERSION :: cur_commit = 9dc20d8d4ef12a2bea75c9fa1f45be962383fe45, newest_commit = 9dc20d8d4ef12a2bea75c9fa1f45be962383fe45, num_commits_behind = 0, num_commits_ahead = 0
+2014-10-03 11:20:14 INFO     CHECKVERSION :: No update needed
+2014-10-03 11:20:14 INFO     CHECKVERSION :: Check scene exceptions update
+2014-10-03 11:20:14 DEBUG    CHECKVERSION :: cache.db: SELECT tvdb_id, show_name FROM scene_exceptions WHERE provider=?; with args ['sb_tvdb_scene_exceptions']
+2014-10-03 11:20:14 INFO     CHECKVERSION :: No scene exceptions update needed
+2014-10-03 11:20:17 INFO     MAIN :: Signal 2 caught, saving and exiting...
+2014-10-03 11:20:17 INFO     MAIN :: Aborting all threads
+2014-10-03 11:20:17 INFO     MAIN :: Waiting for the SEARCH thread to exit
+2014-10-03 11:20:17 INFO     MAIN :: Waiting for the BACKLOG thread to exit
+2014-10-03 11:20:18 INFO     MAIN :: Waiting for the SHOWUPDATER thread to exit
+2014-10-03 11:20:19 INFO     MAIN :: Waiting for the VERSIONCHECKER thread to exit
+2014-10-03 11:20:20 INFO     MAIN :: Waiting for the SHOWQUEUE thread to exit
+2014-10-03 11:20:20 INFO     MAIN :: Waiting for the SEARCHQUEUE thread to exit
+2014-10-03 11:20:21 INFO     MAIN :: Waiting for the POSTPROCESSER thread to exit
+2014-10-03 11:20:21 INFO     MAIN :: Waiting for the PROPERFINDER thread to exit
+2014-10-03 11:20:22 INFO     MAIN :: Saving all shows to the database
+2014-10-03 11:20:22 INFO     MAIN :: Saving config file to disk
+2014-10-03 11:20:22 INFO     MAIN :: Killing cherrypy
