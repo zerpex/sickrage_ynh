@@ -22,7 +22,7 @@ sudo cp -a ../sources/Sick-Beard/* $destination
 sudo cp /home/yunohost.sickbeard/init.ubuntu /etc/init.d/sickbeard
 sudo cp /home/yunohost.sickbeard/default.ubuntu /etc/default/sickbeard 
 sudo chmod 777 /etc/init.d/sickbeard
-sudo update-rc.d sickbeard start
+sudo update-rc.d sickbeard default
 
 # Remove trailing "/" for next commands
 path=${path%/}
