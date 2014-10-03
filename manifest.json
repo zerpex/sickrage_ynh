@@ -1,6 +1,6 @@
 {
-  "name": "Couchpotato",
-  "id": "couchpotato",
+  "name": "Sickbeard",
+  "id": "sickbeard",
   "description": {
     "en": "Schedule and download movies through usenet"
   },
@@ -15,17 +15,17 @@
       {
         "name": "domain",
         "ask": {
-          "en": "Choose a domain for Couchpotato"
+          "en": "Choose a domain for Sickbeard"
         },
         "example": "domain.org"
       },
       {
         "name": "path",
         "ask": {
-          "en": "Choose a path for Couchpotato"
+          "en": "Choose a path for Sickbeard"
         },
-        "example": "/couchpotato",
-        "default": "/couchpotato"
+        "example": "/sickbeard",
+        "default": "/sickbeard"
       }
     ]
   }

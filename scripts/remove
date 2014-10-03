@@ -10,3 +10,4 @@ sudo sudo update-rc.d -f sickbeard.sh remove
 
 sudo service nginx reload
 sudo yunohost app ssowatconf
+sickbeard
