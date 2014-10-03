@@ -10,12 +10,16 @@ if [[ ! $? -eq 0 ]]; then
   exit 1
 fi
 
+
+
+
+destination=/home/yunohost.sickbeard/
+
 # Make directories and set rights
-sudo mkdir -p /home/yunohost.sickbeard 
-sudo chmod 755 -R /home/yunohost.sickbeard
+sudo mkdir -p $destination
+sudo chmod 755 -R $destination
 
 # Copy files to right place
-destination=/home/yunohost.sickbeard/
 sudo cp -a ../sources/Sick-Beard/* $destination
 
 # Add new sickbeard service
