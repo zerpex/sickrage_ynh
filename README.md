@@ -1,7 +1,7 @@
-Couchpotato_ynh
+Sickbeard_ynh
 =============
 
-Installs Couchpotato Usenet download manager for Yunohost.
+Installs Sickbeard download manager for Yunohost.
 
 # Instructions
 
