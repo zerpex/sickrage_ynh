@@ -7,7 +7,7 @@ Installs Sickbeard download manager for Yunohost.
 
 - Use **Install software** option from admin panel
 - Find textbox tagged as **Install from github**
-- Copy and paste: https://github.com/chao-man/couchpotato_ynh into 
+- Copy and paste: https://github.com/Chao-Man/sickbeard_ynh into 
 
 Enjoy.... If it works...
 
