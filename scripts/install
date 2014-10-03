@@ -9,10 +9,7 @@ sudo yunohost app checkurl $domain$path -a sickbeard
 if [[ ! $? -eq 0 ]]; then
   exit 1
 fi
-
-
-
-
+# Set destination
 destination=/home/yunohost.sickbeard/
 
 # Make directories and set rights
