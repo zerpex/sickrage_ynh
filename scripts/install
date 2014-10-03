@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Retrieve arguments
+domain=$1
+path=$2
+port=$3
+
+sudo yunohost app checkurl $domain$path -a sickbeard
+if [[ ! $? -eq 0 ]]; then
+  exit 1
+fi
+
+# Make directories and set rights
+sudo mkdir -p /home/yunohost.sickbeard 
+sudo chmod 755 -R /home/yunohost.sickbeard
+
+# Copy files to right place
+destination=/home/yunohost.sickbeard/
+sudo cp -a ../sources/Sick-Beard/* $destination
+
+# Add new sickbeard service
+sudo cp /home/yunohost.sickbeard/init.ubuntu /etc/init.d/sickbeard
+sudo cp /home/yunohost.sickbeard/default.ubuntu /etc/default/sickbeard 
+sudo chmod 777 /etc/init.d/sickbeard
+sudo update-rc.d sickbeard start
+
+# Remove trailing "/" for next commands
+path=${path%/}
+
+# Monitor service
+sudo yunohost service add sickbeard
+
+# Configure Nginx and generate SSOwat conf
+sudo service sickbeard start
+sudo sed -i "s@PATHTOCHANGE@$path@g" ../conf/nginx.conf
+sudo cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/sickbeard.conf
+sudo service nginx restart
+echo $?
+sudo yunohost app ssowatconf

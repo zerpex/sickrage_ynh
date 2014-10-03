@@ -1,0 +1,32 @@
+{
+  "name": "Couchpotato",
+  "id": "couchpotato",
+  "description": {
+    "en": "Schedule and download movies through usenet"
+  },
+  "developer": {
+    "name": "Chao Man",
+    "email": "chao.j.man@gmail.com",
+    "url": "http://www.chaomander.com"
+  },
+  "multi_instance": "false",
+  "arguments": {
+    "install": [
+      {
+        "name": "domain",
+        "ask": {
+          "en": "Choose a domain for Couchpotato"
+        },
+        "example": "domain.org"
+      },
+      {
+        "name": "path",
+        "ask": {
+          "en": "Choose a path for Couchpotato"
+        },
+        "example": "/couchpotato",
+        "default": "/couchpotato"
+      }
+    ]
+  }
+}
