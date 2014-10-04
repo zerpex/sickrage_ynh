@@ -3,25 +3,32 @@
 # Retrieve arguments
 domain=$1
 path=$2
-port=$3
 
 sudo yunohost app checkurl $domain$path -a sickbeard
 if [[ ! $? -eq 0 ]]; then
   exit 1
 fi
-# Set destination
-destination=/home/yunohost.sickbeard/
+
+# Set destinations
+package_dest=/opt/yunohost/sickbeard
+data_dest=/home/yunohost.app/sickbeard
 
 # Make directories and set rights
-sudo mkdir -p $destination
-sudo chmod 755 -R $destination
+sudo mkdir -p $package_dest
+sudo mkdir -p $data_dest
+sudo chmod 755 -R $package_dest
 
-# Copy files to right place
-sudo cp -a ../sources/* $destination
+# Create user
+sudo useradd -d /home/yunohost.app/sickbeard sickbeard
+
+# Copy/Move files to right place
+sudo cp -a ../sources/* $package_dest
+sudo mv $package_dest/config.ini $data_dest
+sudo mv $package_dest/data $data_dest/data
 
 # Add new sickbeard service
-sudo cp /home/yunohost.sickbeard/init.ubuntu /etc/init.d/sickbeard
-sudo cp /home/yunohost.sickbeard/default.ubuntu /etc/default/sickbeard 
+sudo cp $package_dest/init.ubuntu /etc/init.d/sickbeard
+sudo cp $package_dest/default.ubuntu /etc/default/sickbeard 
 sudo chmod 777 /etc/init.d/sickbeard
 sudo update-rc.d sickbeard defaults
 

@@ -1,6 +1,5 @@
-SB_USER=root         #$RUN_AS, username to run sickbeard under, the default is sickbeard
-SB_HOME="/home/yunohost.sickbeard/"         #$APP_PATH, the location of SickBeard.py, the default is /opt/sickbeard
-SB_DATA="/home/yunohost.sickbeard/data"         #$DATA_DIR, the location of sickbeard.db, cache, logs, the default is /opt/sickbeard
-SB_PIDFILE="/home/yunohost.sickbeard/sickbeard.pid"     #$PID_FILE, the location of sickbeard.pid, the default is /var/run/sickbeard/sickbeard.pid
-SB_OPTS="--config=/home/yunohost.sickbeard/config.ini"         #$EXTRA_DAEMON_OPTS, extra cli option for sickbeard, i.e. " --config=/home/sickbeard/config.ini"
-## SSD_OPTS=        #$EXTRA_SSD_OPTS, extra start-stop-daemon option like " --group=users"
+SB_USER=sickbeard         #$RUN_AS, username to run sickbeard under, the default is sickbeard
+SB_HOME="/opt/yunohost/sickbeard/"         #$APP_PATH, the location of SickBeard.py, the default is /opt/sickbeard
+SB_DATA="/home/yunohost.app/sickbeard/data"         #$DATA_DIR, the location of sickbeard.db, cache, logs, the default is /opt/sickbeard
+SB_PIDFILE="/home/yunohost.app/sickbeard/sickbeard.pid"     #$PID_FILE, the location of sickbeard.pid, the default is /var/run/sickbeard/sickbeard.pid
+SB_OPTS="--config=/home/yunohost.app/sickbeard/config.ini"         #$EXTRA_DAEMON_OPTS, extra cli option for sickbeard, i.e. " --config=/home/sickbeard/config.ini"

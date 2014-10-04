@@ -3239,3 +3239,87 @@
 2014-10-03 13:18:16 INFO     MAIN :: Saving all shows to the database
 2014-10-03 13:18:16 INFO     MAIN :: Saving config file to disk
 2014-10-03 13:18:16 INFO     MAIN :: Killing cherrypy
+2014-10-03 13:30:41 INFO     MAIN :: Checking database structure...
+2014-10-03 13:30:41 DEBUG    MAIN :: Checking Initial Schema database upgrade
+2014-10-03 13:30:41 DEBUG    MAIN :: sickbeard.db: SELECT 1 FROM sqlite_master WHERE name = ?; with args ('tv_shows',)
+2014-10-03 13:30:41 DEBUG    MAIN :: sickbeard.db: SELECT 1 FROM sqlite_master WHERE name = ?; with args ('db_version',)
+2014-10-03 13:30:41 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 13:30:41 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 13:30:41 DEBUG    MAIN :: Initial Schema upgrade not required
+2014-10-03 13:30:41 DEBUG    MAIN :: Checking Add Size And Scene Name Fields database upgrade
+2014-10-03 13:30:41 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 13:30:41 DEBUG    MAIN :: Add Size And Scene Name Fields upgrade not required
+2014-10-03 13:30:41 DEBUG    MAIN :: Checking Rename Season Folders database upgrade
+2014-10-03 13:30:41 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 13:30:41 DEBUG    MAIN :: Rename Season Folders upgrade not required
+2014-10-03 13:30:41 DEBUG    MAIN :: Checking Add1080p And Raw Qualities database upgrade
+2014-10-03 13:30:41 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 13:30:41 DEBUG    MAIN :: Add1080p And Raw Qualities upgrade not required
+2014-10-03 13:30:41 DEBUG    MAIN :: Checking Add Showid Tvdbid Index database upgrade
+2014-10-03 13:30:41 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 13:30:41 DEBUG    MAIN :: Add Showid Tvdbid Index upgrade not required
+2014-10-03 13:30:41 DEBUG    MAIN :: Checking Add Last Update database upgrade
+2014-10-03 13:30:41 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 13:30:41 DEBUG    MAIN :: Add Last Update upgrade not required
+2014-10-03 13:30:41 DEBUG    MAIN :: Checking Add Require And Ignore Words database upgrade
+2014-10-03 13:30:41 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 13:30:41 DEBUG    MAIN :: Add Require And Ignore Words upgrade not required
+2014-10-03 13:30:41 DEBUG    MAIN :: Checking Cleanup History And Specials database upgrade
+2014-10-03 13:30:41 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 13:30:41 DEBUG    MAIN :: Cleanup History And Specials upgrade not required
+2014-10-03 13:30:41 DEBUG    MAIN :: Checking Add Skip Notifications database upgrade
+2014-10-03 13:30:41 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 13:30:41 DEBUG    MAIN :: Add Skip Notifications upgrade not required
+2014-10-03 13:30:41 DEBUG    MAIN :: Checking Add History Source database upgrade
+2014-10-03 13:30:41 DEBUG    MAIN :: sickbeard.db: SELECT db_version FROM db_version
+2014-10-03 13:30:41 DEBUG    MAIN :: Add History Source upgrade not required
+2014-10-03 13:30:41 INFO     MAIN :: Checking database structure...
+2014-10-03 13:30:41 DEBUG    MAIN :: Checking Initial Schema database upgrade
+2014-10-03 13:30:41 DEBUG    MAIN :: cache.db: SELECT 1 FROM sqlite_master WHERE name = ?; with args ('lastUpdate',)
+2014-10-03 13:30:41 DEBUG    MAIN :: Initial Schema upgrade not required
+2014-10-03 13:30:41 DEBUG    MAIN :: Checking Add Scene Exceptions database upgrade
+2014-10-03 13:30:41 DEBUG    MAIN :: cache.db: SELECT 1 FROM sqlite_master WHERE name = ?; with args ('scene_exceptions',)
+2014-10-03 13:30:41 DEBUG    MAIN :: Add Scene Exceptions upgrade not required
+2014-10-03 13:30:41 DEBUG    MAIN :: Checking Add Scene Name Cache database upgrade
+2014-10-03 13:30:41 DEBUG    MAIN :: cache.db: SELECT 1 FROM sqlite_master WHERE name = ?; with args ('scene_names',)
+2014-10-03 13:30:41 DEBUG    MAIN :: Add Scene Name Cache upgrade not required
+2014-10-03 13:30:41 DEBUG    MAIN :: Checking Add Scene Exceptions Provider database upgrade
+2014-10-03 13:30:41 DEBUG    MAIN :: Add Scene Exceptions Provider upgrade not required
+2014-10-03 13:30:41 DEBUG    MAIN :: sickbeard.db: SELECT show_id, tvdb_id, COUNT(tvdb_id) as count FROM tv_shows GROUP BY tvdb_id HAVING count > 1
+2014-10-03 13:30:41 INFO     MAIN :: No duplicate show, check passed
+2014-10-03 13:30:41 DEBUG    MAIN :: sickbeard.db: SELECT showid, season, episode, COUNT(showid) as count FROM tv_episodes GROUP BY showid, season, episode HAVING count > 1
+2014-10-03 13:30:41 INFO     MAIN :: No duplicate episode, check passed
+2014-10-03 13:30:41 DEBUG    MAIN :: sickbeard.db: SELECT episode_id, showid, tv_shows.tvdb_id FROM tv_episodes LEFT JOIN tv_shows ON tv_episodes.showid=tv_shows.tvdb_id WHERE tv_shows.tvdb_id is NULL
+2014-10-03 13:30:41 INFO     MAIN :: No orphan episodes, check passed
+2014-10-03 13:30:41 DEBUG    MAIN :: config_version -> 6
+2014-10-03 13:30:41 DEBUG    MAIN :: Retrieving the last check time from the DB
+2014-10-03 13:30:41 DEBUG    MAIN :: sickbeard.db: SELECT * FROM info
+2014-10-03 13:30:41 INFO     MAIN :: Starting Sick Beard on http://0.0.0.0:7779/
+2014-10-03 13:30:41 INFO     MAIN :: Loading initial show list
+2014-10-03 13:30:41 DEBUG    MAIN :: sickbeard.db: SELECT * FROM tv_shows
+2014-10-03 13:30:41 DEBUG    CHECKVERSION :: Starting new thread: CHECKVERSION
+2014-10-03 13:30:41 INFO     CHECKVERSION :: Checking if source needs an update
+2014-10-03 13:30:42 DEBUG    CP Server Thread-4 :: sickbeard.db: SELECT showid, (SELECT COUNT(*) FROM tv_episodes WHERE showid=tv_eps.showid AND season > 0 AND episode > 0 AND status IN (2,3276802,202,402,102,802,12802,25602,1602,3202,6402,9,3276809,209,409,109,809,12809,25609,1609,3209,6409)) AS ep_snatched, (SELECT COUNT(*) FROM tv_episodes WHERE showid=tv_eps.showid AND season > 0 AND episode > 0 AND status IN (4,3276804,204,404,104,804,12804,25604,1604,3204,6404,6)) AS ep_downloaded, (SELECT COUNT(*) FROM tv_episodes WHERE showid=tv_eps.showid AND season > 0 AND episode > 0  AND ((airdate > 1 AND airdate <= 735509 AND (status = 5 OR status = 3))  OR (status IN (2,3276802,202,402,102,802,12802,25602,1602,3202,6402,9,3276809,209,409,109,809,12809,25609,1609,3209,6409)) OR (status IN (4,3276804,204,404,104,804,12804,25604,1604,3204,6404,6)))) AS ep_total,  (SELECT airdate FROM tv_episodes WHERE showid=tv_eps.showid AND airdate >= 735509 AND status = 1 ORDER BY airdate ASC LIMIT 1) AS ep_airs_next  FROM tv_episodes tv_eps GROUP BY showid
+2014-10-03 13:30:42 DEBUG    CP Server Thread-4 :: sickbeard.db: SELECT (SELECT COUNT(*) FROM tv_episodes WHERE season > 0 AND episode > 0 AND status IN (2,3276802,202,402,102,802,12802,25602,1602,3202,6402,9,3276809,209,409,109,809,12809,25609,1609,3209,6409)) AS ep_snatched, (SELECT COUNT(*) FROM tv_episodes WHERE season > 0 AND episode > 0 AND status IN (4,3276804,204,404,104,804,12804,25604,1604,3204,6404,6)) AS ep_downloaded, (SELECT COUNT(*) FROM tv_episodes WHERE season > 0 AND episode > 0  AND ((airdate > 1 AND airdate <= 735509 AND (status = 5 OR status = 3))  OR (status IN (2,3276802,202,402,102,802,12802,25602,1602,3202,6402,9,3276809,209,409,109,809,12809,25609,1609,3209,6409)) OR (status IN (4,3276804,204,404,104,804,12804,25604,1604,3204,6404,6)))) AS ep_total  FROM tv_episodes tv_eps LIMIT 1
+2014-10-03 13:30:43 DEBUG    CHECKVERSION :: cur_commit = None, newest_commit = 630fb45df4843069ab2268d4819432e346904901, num_commits_behind = 0
+2014-10-03 13:30:43 DEBUG    CHECKVERSION :: Unknown current version number, don't know if we should update or not
+2014-10-03 13:30:43 INFO     CHECKVERSION :: Check scene exceptions update
+2014-10-03 13:30:43 DEBUG    CHECKVERSION :: cache.db: SELECT tvdb_id, show_name FROM scene_exceptions WHERE provider=?; with args ['sb_tvdb_scene_exceptions']
+2014-10-03 13:30:43 INFO     CHECKVERSION :: No scene exceptions update needed
+2014-10-03 13:30:48 DEBUG    CP Server Thread-4 :: sickbeard.db: SELECT *, tv_shows.status as show_status FROM tv_episodes, tv_shows WHERE season > 0 AND airdate >= ? AND airdate < ? AND tv_shows.tvdb_id = tv_episodes.showid AND tv_episodes.status NOT IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) with args [735509, 735516, 4, 3276804, 204, 404, 104, 804, 12804, 25604, 1604, 3204, 6404, 2, 3276802, 202, 402, 102, 802, 12802, 25602, 1602, 3202, 6402, 6, 7]
+2014-10-03 13:30:48 DEBUG    CP Server Thread-4 :: sickbeard.db: SELECT *, tv_shows.status as show_status FROM tv_episodes outer_eps, tv_shows WHERE season > 0 AND showid NOT IN () AND tv_shows.tvdb_id = outer_eps.showid AND airdate = (SELECT airdate FROM tv_episodes inner_eps WHERE inner_eps.season > 0 AND inner_eps.showid = outer_eps.showid AND inner_eps.airdate >= ? ORDER BY inner_eps.airdate ASC LIMIT 1) AND outer_eps.status NOT IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) with args [735516, 4, 3276804, 204, 404, 104, 804, 12804, 25604, 1604, 3204, 6404, 2, 3276802, 202, 402, 102, 802, 12802, 25602, 1602, 3202, 6402]
+2014-10-03 13:30:48 DEBUG    CP Server Thread-4 :: sickbeard.db: SELECT *, tv_shows.status as show_status FROM tv_episodes, tv_shows WHERE season > 0 AND tv_shows.tvdb_id = tv_episodes.showid AND airdate < ? AND airdate >= ? AND tv_episodes.status = ? AND tv_episodes.status NOT IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) with args [735509, 735506, 3, 4, 3276804, 204, 404, 104, 804, 12804, 25604, 1604, 3204, 6404, 2, 3276802, 202, 402, 102, 802, 12802, 25602, 1602, 3202, 6402, 6, 7]
+2014-10-03 13:30:48 DEBUG    CP Server Thread-4 :: sickbeard.db: SELECT (SELECT COUNT(*) FROM tv_episodes WHERE season > 0 AND episode > 0 AND status IN (2,3276802,202,402,102,802,12802,25602,1602,3202,6402,9,3276809,209,409,109,809,12809,25609,1609,3209,6409)) AS ep_snatched, (SELECT COUNT(*) FROM tv_episodes WHERE season > 0 AND episode > 0 AND status IN (4,3276804,204,404,104,804,12804,25604,1604,3204,6404,6)) AS ep_downloaded, (SELECT COUNT(*) FROM tv_episodes WHERE season > 0 AND episode > 0  AND ((airdate > 1 AND airdate <= 735509 AND (status = 5 OR status = 3))  OR (status IN (2,3276802,202,402,102,802,12802,25602,1602,3202,6402,9,3276809,209,409,109,809,12809,25609,1609,3209,6409)) OR (status IN (4,3276804,204,404,104,804,12804,25604,1604,3204,6404,6)))) AS ep_total  FROM tv_episodes tv_eps LIMIT 1
+2014-10-03 13:30:59 INFO     MAIN :: Signal 2 caught, saving and exiting...
+2014-10-03 13:30:59 INFO     MAIN :: Aborting all threads
+2014-10-03 13:30:59 INFO     MAIN :: Waiting for the SEARCH thread to exit
+2014-10-03 13:30:59 INFO     MAIN :: Waiting for the BACKLOG thread to exit
+2014-10-03 13:31:00 INFO     MAIN :: Waiting for the SHOWUPDATER thread to exit
+2014-10-03 13:31:01 INFO     MAIN :: Waiting for the VERSIONCHECKER thread to exit
+2014-10-03 13:31:02 INFO     MAIN :: Waiting for the SHOWQUEUE thread to exit
+2014-10-03 13:31:02 INFO     MAIN :: Waiting for the SEARCHQUEUE thread to exit
+2014-10-03 13:31:03 INFO     MAIN :: Waiting for the POSTPROCESSER thread to exit
+2014-10-03 13:31:04 INFO     MAIN :: Waiting for the PROPERFINDER thread to exit
+2014-10-03 13:31:05 INFO     MAIN :: Saving all shows to the database
+2014-10-03 13:31:05 INFO     MAIN :: Saving config file to disk
+2014-10-03 13:31:05 INFO     MAIN :: Killing cherrypy
