@@ -13,18 +13,18 @@ fi
 package_dest=/opt/yunohost/sickbeard
 data_dest=/home/yunohost.app/sickbeard
 
-# Make directories and set rights
+# Create user
+id -u sickbeard &>/dev/null ||  sudo useradd -d /home/yunohost.app/sickbeard sickbeard
+
+# Make directories
 sudo mkdir -p $package_dest
 sudo mkdir -p $data_dest
-sudo chmod 755 -R $package_dest
-
-# Create user
-sudo useradd -d /home/yunohost.app/sickbeard sickbeard
 
 # Copy/Move files to right place
-sudo cp -a ../sources/* $package_dest
+sudo cp -a ../sources/sickbeard/* $package_dest
+sudo cp -a ../sources/cheetah/ $package_dest
 sudo mv $package_dest/config.ini $data_dest
-sudo mv $package_dest/data $data_dest/data
+sudo mv $package_dest/data $data_dest
 
 # Add new sickbeard service
 sudo cp $package_dest/init.ubuntu /etc/init.d/sickbeard
@@ -32,16 +32,29 @@ sudo cp $package_dest/default.ubuntu /etc/default/sickbeard
 sudo chmod 777 /etc/init.d/sickbeard
 sudo update-rc.d sickbeard defaults
 
+# Set rights
+sudo chown -R sickbeard $package_dest
+sudo chown -R sickbeard $data_dest
+sudo chmod 777 -R $package_dest
+sudo chmod 777 -R $data_dest
+
 # Remove trailing "/" for next commands
 path=${path%/}
 
 # Monitor service
 sudo yunohost service add sickbeard
 
-# Configure Nginx and generate SSOwat conf
-sudo service sickbeard start
+# Configure Nginx
+
 sudo sed -i "s@PATHTOCHANGE@$path@g" ../conf/nginx.conf
 sudo cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/sickbeard.conf
+
+# Install Cheetah
+cd $package_dest/cheetah
+sudo python setup.py install
+
+# Generate SSOwat conf
 sudo service nginx restart
 echo $?
 sudo yunohost app ssowatconf
+sudo service sickbeard start
