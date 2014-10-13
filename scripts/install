@@ -9,9 +9,10 @@ if [[ ! $? -eq 0 ]]; then
   exit 1
 fi
 
-# Set destinations
+# Set variables
 package_dest=/opt/yunohost/sickbeard
 data_dest=/home/yunohost.app/sickbeard
+python_bin=$package_dest/bin/python
 
 # Create user
 id -u sickbeard &>/dev/null ||  sudo useradd -d /home/yunohost.app/sickbeard sickbeard
@@ -20,17 +21,12 @@ id -u sickbeard &>/dev/null ||  sudo useradd -d /home/yunohost.app/sickbeard sic
 sudo mkdir -p $package_dest
 sudo mkdir -p $data_dest
 
+# Install required packages
+sudo apt-get install python-pip python-virtualenv python-dev uwsgi uwsgi-plugin-python
+
 # Copy/Move files to right place
 sudo cp -a ../sources/sickbeard/* $package_dest
-sudo cp -a ../sources/cheetah/ $package_dest
 sudo mv $package_dest/config.ini $data_dest
-sudo mv $package_dest/data $data_dest
-
-# Add new sickbeard service
-sudo cp $package_dest/init.ubuntu /etc/init.d/sickbeard
-sudo cp $package_dest/default.ubuntu /etc/default/sickbeard 
-sudo chmod 777 /etc/init.d/sickbeard
-sudo update-rc.d sickbeard defaults
 
 # Set rights
 sudo chown -R sickbeard $package_dest
@@ -50,8 +46,15 @@ sudo sed -i "s@PATHTOCHANGE@$path@g" ../conf/nginx.conf
 sudo cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/sickbeard.conf
 
 # Install Cheetah
-cd $package_dest/cheetah
-sudo python setup.py install
+sudo virtualenv $package_dest
+sudo bash -c "source $package_dest/bin/activate && pip install cheetah"
+
+# Add new sickbeard service
+sudo cp $package_dest/init.ubuntu /etc/init.d/sickbeard
+sudo cp $package_dest/default.ubuntu /etc/default/sickbeard 
+sudo sed -i "s@VIRTUALENVPYTHONBIN@$python_bin@g" /etc/default/sickbeard
+sudo chmod 777 /etc/init.d/sickbeard
+sudo update-rc.d sickbeard defaults
 
 # Generate SSOwat conf
 sudo service nginx restart
