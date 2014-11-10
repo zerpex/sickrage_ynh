@@ -22,7 +22,7 @@ sudo mkdir -p $package_dest
 sudo mkdir -p $data_dest
 
 # Install required packages
-sudo apt-get install python-pip python-virtualenv python-dev uwsgi uwsgi-plugin-python
+sudo apt-get install -y python-pip python-virtualenv python-dev uwsgi uwsgi-plugin-python
 
 # Copy/Move files to right place
 sudo cp -a ../sources/sickbeard/* $package_dest
