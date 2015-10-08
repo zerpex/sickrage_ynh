@@ -63,8 +63,7 @@ sudo service sickrage stop
 sleep 2
 
 # Change webroot of SickRage
-sudo sed -i 's/web_root = ""\//web_root = "'"$path"'\/"/g' $data_dest/config.ini
-
+sudo sed -i "s/web_root = \"\"/web_root = \"\/$path\"/g" /home/yunohost.app/sickrage/config.ini
 
 # Generate SSOwat conf
 sudo service nginx restart
