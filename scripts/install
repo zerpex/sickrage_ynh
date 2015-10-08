@@ -50,7 +50,7 @@ sudo bash -c "source $package_dest/bin/activate && pip install cheetah"
 
 # Add new sickrage service
 sudo cp $package_dest/runscripts/init.ubuntu /etc/init.d/sickrage
-sudo cp conf/default.ubuntu /etc/default/sickrage
+sudo cp ../conf/default.ubuntu /etc/default/sickrage
 sudo sed -i "s@VIRTUALENVPYTHONBIN@$python_bin@g" /etc/default/sickrage
 sudo chmod 777 /etc/init.d/sickrage
 sudo update-rc.d sickrage defaults
