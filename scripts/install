@@ -28,15 +28,6 @@ sudo apt-get install -y python-pip python-virtualenv python-dev uwsgi uwsgi-plug
 sudo cp -a ../sources/sickrage/* $package_dest
 sudo mv $package_dest/config.ini $data_dest
 
-# Start/stop SickRage in order to generate config files
-sudo service sickrage start
-sleep 5
-sudo service sickrage stop
-sleep 2
-
-# Change webroot of SickRage
-sudo sed -i 's/web_root = ""\//web_root = "'"$path"'\/"/g' $data_dest/config.ini
-
 # Set rights
 sudo chown -R sickrage $package_dest
 sudo chown -R sickrage $data_dest
@@ -64,6 +55,16 @@ sudo cp $package_dest/default.ubuntu /etc/default/sickrage
 sudo sed -i "s@VIRTUALENVPYTHONBIN@$python_bin@g" /etc/default/sickrage
 sudo chmod 777 /etc/init.d/sickrage
 sudo update-rc.d sickrage defaults
+
+# Start/stop SickRage in order to generate config files
+sudo service sickrage start
+sleep 5
+sudo service sickrage stop
+sleep 2
+
+# Change webroot of SickRage
+sudo sed -i 's/web_root = ""\//web_root = "'"$path"'\/"/g' $data_dest/config.ini
+
 
 # Generate SSOwat conf
 sudo service nginx restart
