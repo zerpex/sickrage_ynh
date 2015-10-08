@@ -56,10 +56,7 @@ sudo chmod 777 /etc/init.d/sickrage
 sudo update-rc.d sickrage defaults
 
 # Start/stop SickRage in order to generate config files
-sudo service sickrage start
-sleep 5
-sudo service sickrage stop
-sleep 2
+sudo service sickrage start && sudo service sickrage stop
 
 # Change webroot of SickRage
 sudo sed -i "s@web_root = \"\"@web_root = \"/$webroot\"@g" $data_dest/config.ini
