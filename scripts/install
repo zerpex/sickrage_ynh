@@ -26,7 +26,6 @@ sudo apt-get install -y python-pip python-virtualenv python-dev uwsgi uwsgi-plug
 
 # Copy/Move files to right place
 sudo cp -a ../sources/sickrage/* $package_dest
-sudo mv $package_dest/config.ini $data_dest
 
 # Set rights
 sudo chown -R sickrage $package_dest
@@ -63,7 +62,7 @@ sudo service sickrage stop
 sleep 2
 
 # Change webroot of SickRage
-sudo sed -i "s/web_root = \"\"/web_root = \"\/$path\"/g" /home/yunohost.app/sickrage/config.ini
+sudo sed -i "s/web_root = \"\"/web_root = \"/$path\"/g" $data_dest/config.ini
 
 # Generate SSOwat conf
 sudo service nginx restart
