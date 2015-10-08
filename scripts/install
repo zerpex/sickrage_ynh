@@ -13,6 +13,7 @@ fi
 package_dest=/opt/yunohost/sickrage
 data_dest=/home/yunohost.app/sickrage
 python_bin=$package_dest/bin/python
+webroot=`echo "$path" | cut -c2-`
 
 # Create user
 id -u sickrage &>/dev/null ||  sudo useradd -d /home/yunohost.app/sickrage sickrage
@@ -62,7 +63,7 @@ sudo service sickrage stop
 sleep 2
 
 # Change webroot of SickRage
-sudo sed -i "s/web_root = \"\"/web_root = \"/$path\"/g" $data_dest/config.ini
+sudo sed -i "s/web_root = \"\"/web_root = \"/$webroot\"/g" $data_dest/config.ini
 
 # Generate SSOwat conf
 sudo service nginx restart
