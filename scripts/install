@@ -41,7 +41,6 @@ path=${path%/}
 sudo yunohost service add sickrage
 
 # Configure Nginx
-
 sudo sed -i "s@PATHTOCHANGE@$path@g" ../conf/nginx.conf
 sudo cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/sickrage.conf
 
@@ -63,7 +62,7 @@ sudo service sickrage stop
 sleep 2
 
 # Change webroot of SickRage
-sudo sed -i "s/web_root = \"\"/web_root = \"/$webroot\"/g" $data_dest/config.ini
+sudo sed -i "s@web_root = \"\"@web_root = \"/$webroot\"@g" $data_dest/config.ini
 
 # Generate SSOwat conf
 sudo service nginx restart
