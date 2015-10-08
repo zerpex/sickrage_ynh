@@ -3,12 +3,11 @@
   "id": "sickrage",
   "description": {
     "en": "Schedule and download movies through usenet"
-    "fr": "Gestionnaire de séries TV"
   },
   "developer": {
     "name": "zerpex",
     "email": "zerpex@gmail.com",
-    "url": ""
+    "url": "http://zerpex.fr"
   },
   "multi_instance": "false",
   "arguments": {
@@ -17,7 +16,6 @@
         "name": "domain",
         "ask": {
           "en": "Choose a domain for SickRage"
-	  "fr": "Choisissez un domaine pour SickRage"
         },
         "example": "domain.org"
       },
@@ -25,7 +23,6 @@
         "name": "path",
         "ask": {
           "en": "Choose a path for SickRage"
-	  "fr": "Choisissez un chemin pour SickRage"
         },
         "example": "/sickrage",
         "default": "/sickrage"
