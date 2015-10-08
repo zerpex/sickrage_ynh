@@ -25,8 +25,8 @@ sudo mkdir -p $data_dest
 # Install required packages
 sudo apt-get install -y python-pip python-virtualenv python-dev uwsgi uwsgi-plugin-python python-openssl python-mako python-lxml
 
-# Copy/Move files to right place
-sudo cp -a ../sources/sickrage/* $package_dest
+# Getting last release of SickRage
+sudo git clone https://github.com/SiCKRAGETV/SickRage.git $package_dest
 
 # Set rights
 sudo chown -R sickrage $package_dest
@@ -50,7 +50,7 @@ sudo bash -c "source $package_dest/bin/activate && pip install cheetah"
 
 # Add new sickrage service
 sudo cp $package_dest/runscripts/init.ubuntu /etc/init.d/sickrage
-sudo cp $package_dest/default.ubuntu /etc/default/sickrage
+sudo cp conf/default.ubuntu /etc/default/sickrage
 sudo sed -i "s@VIRTUALENVPYTHONBIN@$python_bin@g" /etc/default/sickrage
 sudo chmod 777 /etc/init.d/sickrage
 sudo update-rc.d sickrage defaults

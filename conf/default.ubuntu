@@ -1,0 +1,5 @@
+SR_USER=sickrage         					#$RUN_AS, username to run sickrage under, the default is sickrage
+SR_HOME="/opt/yunohost/sickrage/"       			#$APP_PATH, the location of sickrage.py, the default is /opt/sickrage
+SR_DATA="/opt/yunohost/sickrage/data"         			#$DATA_DIR, the location of sickrage.db, cache, logs, the default is /opt/sickrage
+SR_OPTS="--config=/home/yunohost.app/sickrage/config.ini"       #$EXTRA_DAEMON_OPTS, extra cli option for sickrage, i.e. " --config=/home/sickrage/config.ini"
+PYTHON_BIN="VIRTUALENVPYTHONBIN"
