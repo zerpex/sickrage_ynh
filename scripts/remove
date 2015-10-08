@@ -1,13 +1,13 @@
 #!/bin/bash
 
-domain=$(sudo yunohost app setting sickbeard domain)
+domain=$(sudo yunohost app setting sickrage domain)
 
-sudo rm /etc/nginx/conf.d/$domain.d/sickbeard.conf
-sudo rm -rf /home/yunohost.app/sickbeard
-sudo rm -rf /opt/yunohost/sickbeard
-sudo rm -rf /etc/init.d/sickbeard
+sudo rm /etc/nginx/conf.d/$domain.d/sickrage.conf
+sudo rm -rf /home/yunohost.app/sickrage
+sudo rm -rf /opt/yunohost/sickrage
+sudo rm -rf /etc/init.d/sickrage
 
-sudo sudo update-rc.d -f sickbeard remove
+sudo sudo update-rc.d -f sickrage remove
 
 sudo service nginx reload
 sudo yunohost app ssowatconf

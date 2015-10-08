@@ -1,13 +1,13 @@
-Sickbeard_ynh
+Sickrage_ynh
 =============
 
-Installs Sickbeard download manager for Yunohost.
+Installs Sickrage download manager for Yunohost.
 
 # Instructions
 
 - Use **Install software** option from admin panel
 - Find textbox tagged as **Install from github**
-- Copy and paste: https://github.com/Chao-Man/sickbeard_ynh into 
+- Copy and paste: https://github.com/zerpex/sickrage_ynh into 
 
 Enjoy.... If it works...
 

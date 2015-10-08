@@ -4,33 +4,33 @@
 domain=$1
 path=$2
 
-sudo yunohost app checkurl $domain$path -a sickbeard
+sudo yunohost app checkurl $domain$path -a sickrage
 if [[ ! $? -eq 0 ]]; then
   exit 1
 fi
 
 # Set variables
-package_dest=/opt/yunohost/sickbeard
-data_dest=/home/yunohost.app/sickbeard
+package_dest=/opt/yunohost/sickrage
+data_dest=/home/yunohost.app/sickrage
 python_bin=$package_dest/bin/python
 
 # Create user
-id -u sickbeard &>/dev/null ||  sudo useradd -d /home/yunohost.app/sickbeard sickbeard
+id -u sickrage &>/dev/null ||  sudo useradd -d /home/yunohost.app/sickrage sickrage
 
 # Make directories
 sudo mkdir -p $package_dest
 sudo mkdir -p $data_dest
 
 # Install required packages
-sudo apt-get install -y python-pip python-virtualenv python-dev uwsgi uwsgi-plugin-python
+sudo apt-get install -y python-pip python-virtualenv python-dev uwsgi uwsgi-plugin-python python-openssl python-mako python-lxml
 
 # Copy/Move files to right place
-sudo cp -a ../sources/sickbeard/* $package_dest
+sudo cp -a ../sources/sickrage/* $package_dest
 sudo mv $package_dest/config.ini $data_dest
 
 # Set rights
-sudo chown -R sickbeard $package_dest
-sudo chown -R sickbeard $data_dest
+sudo chown -R sickrage $package_dest
+sudo chown -R sickrage $data_dest
 sudo chmod 777 -R $package_dest
 sudo chmod 777 -R $data_dest
 
@@ -38,26 +38,27 @@ sudo chmod 777 -R $data_dest
 path=${path%/}
 
 # Monitor service
-sudo yunohost service add sickbeard
+sudo yunohost service add sickrage
 
 # Configure Nginx
 
 sudo sed -i "s@PATHTOCHANGE@$path@g" ../conf/nginx.conf
-sudo cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/sickbeard.conf
+sudo cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/sickrage.conf
 
 # Install Cheetah
 sudo virtualenv $package_dest
 sudo bash -c "source $package_dest/bin/activate && pip install cheetah"
 
-# Add new sickbeard service
-sudo cp $package_dest/init.ubuntu /etc/init.d/sickbeard
-sudo cp $package_dest/default.ubuntu /etc/default/sickbeard 
-sudo sed -i "s@VIRTUALENVPYTHONBIN@$python_bin@g" /etc/default/sickbeard
-sudo chmod 777 /etc/init.d/sickbeard
-sudo update-rc.d sickbeard defaults
+# Add new sickrage service
+sudo cp $package_dest/runscripts/init.ubuntu /etc/init.d/sickrage
+sudo cp $package_dest/default.ubuntu /etc/default/sickrage
+sudo sed -i "s@VIRTUALENVPYTHONBIN@$python_bin@g" /etc/default/sickrage
+sudo chmod 777 /etc/init.d/sickrage
+sudo update-rc.d sickrage defaults
 
 # Generate SSOwat conf
 sudo service nginx restart
 echo $?
 sudo yunohost app ssowatconf
-sudo service sickbeard start
+sudo service sickrage start
+

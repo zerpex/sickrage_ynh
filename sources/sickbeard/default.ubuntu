@@ -1,5 +1,0 @@
-SB_USER=sickbeard         #$RUN_AS, username to run sickbeard under, the default is sickbeard
-SB_HOME="/opt/yunohost/sickbeard/"         #$APP_PATH, the location of SickBeard.py, the default is /opt/sickbeard
-SB_DATA="/opt/yunohost/sickbeard/data"         #$DATA_DIR, the location of sickbeard.db, cache, logs, the default is /opt/sickbeard
-SB_OPTS="--config=/home/yunohost.app/sickbeard/config.ini"         #$EXTRA_DAEMON_OPTS, extra cli option for sickbeard, i.e. " --config=/home/sickbeard/config.ini"
-PYTHON_BIN="VIRTUALENVPYTHONBIN"

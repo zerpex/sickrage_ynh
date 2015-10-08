@@ -1,13 +1,14 @@
 {
-  "name": "Sickbeard",
-  "id": "sickbeard",
+  "name": "SickRage",
+  "id": "sickrage",
   "description": {
     "en": "Schedule and download movies through usenet"
+    "fr": "Gestionnaire de séries TV"
   },
   "developer": {
-    "name": "Chao Man",
-    "email": "chao.j.man@gmail.com",
-    "url": "http://www.chaomander.com"
+    "name": "zerpex",
+    "email": "zerpex@gmail.com",
+    "url": ""
   },
   "multi_instance": "false",
   "arguments": {
@@ -15,17 +16,19 @@
       {
         "name": "domain",
         "ask": {
-          "en": "Choose a domain for Sickbeard"
+          "en": "Choose a domain for SickRage"
+	  "fr": "Choisissez un domaine pour SickRage"
         },
         "example": "domain.org"
       },
       {
         "name": "path",
         "ask": {
-          "en": "Choose a path for Sickbeard"
+          "en": "Choose a path for SickRage"
+	  "fr": "Choisissez un chemin pour SickRage"
         },
-        "example": "/sickbeard",
-        "default": "/sickbeard"
+        "example": "/sickrage",
+        "default": "/sickrage"
       }
     ]
   }
