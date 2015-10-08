@@ -2,10 +2,13 @@
 
 domain=$(sudo yunohost app setting sickrage domain)
 
+sudo service sickrage stop
+
 sudo rm /etc/nginx/conf.d/$domain.d/sickrage.conf
 sudo rm -rf /home/yunohost.app/sickrage
 sudo rm -rf /opt/yunohost/sickrage
 sudo rm -rf /etc/init.d/sickrage
+sudo rm -rf /var/run/sickrage
 
 sudo sudo update-rc.d -f sickrage remove
 
