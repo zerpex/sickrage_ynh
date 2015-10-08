@@ -2,7 +2,7 @@
   "name": "SickRage",
   "id": "sickrage",
   "description": {
-    "en": "Schedule and download movies through usenet"
+    "en": "Automatic Video Library Manager for TV Shows. It watches for new episodes of your favorite shows, and when they are posted it does its magic."
   },
   "developer": {
     "name": "zerpex",
