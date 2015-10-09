@@ -2,15 +2,26 @@
 
 domain=$(sudo yunohost app setting sickrage domain)
 
+# Stop SickRage service
 sudo service sickrage stop
 
+# Remove all files and directories
 sudo rm /etc/nginx/conf.d/$domain.d/sickrage.conf
 sudo rm -rf /home/yunohost.app/sickrage
 sudo rm -rf /opt/yunohost/sickrage
 sudo rm -rf /etc/init.d/sickrage
 sudo rm -rf /var/run/sickrage
 
+# Disable auto-start at reboot
 sudo sudo update-rc.d -f sickrage remove
 
+# Delete SickRage user
+sudo userdel sickrage > /dev/null 2>&1
+
+# Restart php & nginx
+sudo killall php5-fpm
+sudo service php5-fpm start
 sudo service nginx reload
+
+# Regenerate SSO configuration
 sudo yunohost app ssowatconf

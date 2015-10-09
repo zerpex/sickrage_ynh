@@ -48,10 +48,16 @@ sudo cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/sickrage.conf
 sudo virtualenv $package_dest
 sudo bash -c "source $package_dest/bin/activate && pip install cheetah"
 
+# Default file generation
+sudo echo "SR_USER=sickrage" > ../sources/sickrage.default
+sudo echo "SR_HOME=\"$package_dest\"" >> ../sources/sickrage.default
+sudo echo "SR_DATA=\"$data_dest\"" >> ../sources/sickrage.default
+sudo echo "SR_OPTS=\" --config=$data_dest/config.ini\"" >> ../sources/sickrage.default
+sudo echo "PYTHON_BIN=\"$python_bin\"" >> ../sources/sickrage.default
+
 # Add new sickrage service
 sudo cp $package_dest/runscripts/init.ubuntu /etc/init.d/sickrage
-sudo cp ../conf/default.ubuntu /etc/default/sickrage
-sudo sed -i "s@VIRTUALENVPYTHONBIN@$python_bin@g" /etc/default/sickrage
+sudo cp ../sources/sickrage.default /etc/default/sickrage
 sudo chmod 777 /etc/init.d/sickrage
 sudo update-rc.d sickrage defaults
 
