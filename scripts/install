@@ -72,4 +72,3 @@ sudo service nginx restart
 echo $?
 sudo yunohost app ssowatconf
 sudo service sickrage start
-
