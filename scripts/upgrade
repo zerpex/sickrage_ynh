@@ -12,3 +12,4 @@ sudo chown -R sickrage /opt/yunohost/sickrage
 
 # Restarting SickRage
 sudo service sickrage start
+
