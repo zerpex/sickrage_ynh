@@ -25,3 +25,4 @@ sudo service nginx reload
 
 # Regenerate SSO configuration
 sudo yunohost app ssowatconf
+
