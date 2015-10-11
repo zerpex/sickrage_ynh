@@ -1,0 +1,62 @@
+# Set port to use
+psid=`sudo ps auxf | grep -v grep | grep sickrage | awk '{ print $2 }'`
+sudo netstat -tlnp | grep $psid | awk -F: '{ print $2 }' | awk '{ print $1 }'
+
+srport=""
+for srid in `sudo ps auxf | grep -v grep | grep sickrage | awk '{ print $2 }'`
+do 
+	srport+=(`sudo netstat -tlnp | grep $psid | awk -F: '{ print $2 }' | awk '{ print $1 }'`)
+done
+
+readarray -t sorted < <(for a in "${srport[@]}"; do echo "$a"; done | sort | uniq)
+srport=`echo ${sorted[-1]}`
+((srport++)) 
+
+
+# Set variables
+ynhuser=$1
+data_dest=/home/yunohost.app/sickrage/$ynhuser
+
+# Create dirs and set rights
+sudo mkdir -p $data_dest
+sudo chown -R $ynhuser $data_dest
+sudo chmod 777 -R $data_dest
+
+# Default file generation
+sudo echo "SR_USER=$ynhuser" > ../sources/sickrage.default.$ynhuser
+sudo echo "SR_HOME=\"$package_dest\"" >> ../sources/sickrage.default.$ynhuser
+sudo echo "SR_DATA=\"$data_dest\"" >> ../sources/sickrage.default.$ynhuser
+sudo echo "SR_OPTS=\" --config=$data_dest/config.ini\"" >> ../sources/sickrage.default.$ynhuser
+sudo echo "PYTHON_BIN=\"$python_bin\"" >> ../sources/sickrage.default.$ynhuser
+sudo cp ../sources/sickrage.default.$ynhuser /etc/default/sickrage.$ynhuser
+
+# Add new sickrage service
+sudo cp $package_dest/runscripts/init.ubuntu /etc/init.d/sickrage.$ynhuser
+sudo sed -i 's@/etc/default/sickrage@/etc/default/sickrage.$ynhuser@g' /etc/init.d/sickrage.$ynhuser
+
+password=$(dd if=/dev/urandom bs=1 count=200 2> /dev/null | tr -c -d 'A-Za-z0-9' | sed -n 's/\(.\{40\}\).*/\1/p')
+
+sudo mkdir -p $data_dest
+sudo chown -R $ynhuser $data_dest
+sudo chmod 777 -R $data_dest
+sudo chmod 777 /etc/init.d/sickrage
+
+sudo update-rc.d sickrage.$ynhuser defaults
+
+# Start/stop SickRage in order to generate config files
+sudo service sickrage.$ynhuser start && sudo service sickrage.$ynhuser stop
+
+# Change webroot of SickRage
+sudo sed -i 's@web_port = 8081@web_port = \"$srport\"@g' $data_dest/config.ini
+sudo sed -i "s@web_root = \"\"@web_root = \"/$webroot\"@g" $data_dest/config.ini
+
+# Update nginx conf
+sudo echo "if ($remote_user = \"$ynhuser\") {" >> ../conf/nginx.conf
+sudo echo "	proxy_pass http://127.0.0.1:$srport/$webroot;" >> ../conf/nginx.conf
+sudo echo "	break;" >> ../conf/nginx.conf
+sudo echo "}" >> ../conf/nginx.conf
+
+sudo service nginx restart
+echo $?
+sudo yunohost app ssowatconf
+sudo service sickrage.$ynhuser start

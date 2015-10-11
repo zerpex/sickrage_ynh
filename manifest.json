@@ -9,7 +9,7 @@
     "email": "zerpex@gmail.com",
     "url": "http://zerpex.fr"
   },
-  "multi_instance": "false",
+  "multi_instance": "true",
   "arguments": {
     "install": [
       {
