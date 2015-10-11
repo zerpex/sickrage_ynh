@@ -67,7 +67,6 @@ ynh_users=$(ldapsearch -h localhost -b ou=users,dc=yunohost,dc=org -x objectClas
 id=1
 for ynhuser in $ynh_users
 do
-	data_dest=/home/yunohost.app/$ynhuser
 	srport="782$id"
 	sudo mkdir -p $data_dest
 	sudo chown -R $ynhuser $data_dest
@@ -89,6 +88,10 @@ do
 done
 
 # Configure Nginx
+sudo echo "	# Include SSOWAT user panel." >> ../conf/nginx.conf
+sudo echo "	include conf.d/yunohost_panel.conf.inc;" >> ../conf/nginx.conf
+sudo echo "	more_clear_input_headers 'Accept-Encoding';" >> ../conf/nginx.conf
+sudo echo "" >> ../conf/nginx.conf
 sudo echo "}" >> ../conf/nginx.conf
 sudo cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/sickrage.conf
 
