@@ -17,6 +17,7 @@ sudo sudo update-rc.d -f sickrage remove
 
 # Delete SickRage user
 sudo userdel sickrage > /dev/null 2>&1
+sudo groupdel sickrage > /dev/null 2>&1
 
 # Restart php & nginx
 sudo killall php5-fpm
