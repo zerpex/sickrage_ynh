@@ -26,7 +26,7 @@ sudo mkdir -p $data_dest
 sudo apt-get install -y python-pip python-virtualenv python-dev uwsgi uwsgi-plugin-python python-openssl python-mako python-lxml
 
 # Getting last release of SickRage
-sudo git clone https://github.com/SiCKRAGETV/SickRage.git $package_dest
+sudo git clone https://github.com/SickRage/SickRage.git $package_dest
 
 # Set rights
 sudo chown -R sickrage $package_dest
